@@ -185,9 +185,11 @@ class res_partner(models.Model):
                 vals['property_account_payable'] = \
                     vals['selection_account_payable']
             vals['property_account_receivable'] = \
-                self.get_create_customer_partner_account(cr, uid, vals, context)
+                self.get_create_customer_partner_account(
+                    cr, uid, vals, context)
             vals['property_account_payable'] = \
-                self.get_create_supplier_partner_account(cr, uid, vals, context)
+                self.get_create_supplier_partner_account(
+                    cr, uid, vals, context)
 
         return super(res_partner, self).create(cr, uid, vals, context=context)
 
