@@ -19,13 +19,13 @@ Maintainer
 
 ![Alt SimplERP.it](http://simplerp.it/images/Logo.png "http://simplerp.it") 
 
-SimplERP srl
+SimplERP Srl
 =======================
 
 http://simplerp.it
 
-This module is maintained by SimplERP srl.
+This module is maintained by SimplERP Srl.
 
-SimplERP is the professional version of LibrERP.it project, which promotes a customized Odoo version with additional features for Italian usage.
+SimplERP is the professional edition of LibrERP.it project, which promotes a customized Odoo with additional features for Italian usage.
 
 To contribute to this module, please visit http://librerp.it.
