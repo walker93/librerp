@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/sergiocorato/__librerp__.svg?branch=8.0)](https://travis-ci.org/sergiocorato/__librerp__)
-[![Coverage Status](https://coveralls.io/repos/sergiocorato/__librerp__/badge.svg?branch=8.0&service=github)](https://coveralls.io/github/sergiocorato/__librerp__?branch=8.0)
+[![Build Status](https://travis-ci.org/sergiocorato/__librerp__.svg?branch=migr_partner_subaccount)](https://travis-ci.org/sergiocorato/__librerp__)
+[![Coverage Status](https://coveralls.io/repos/sergiocorato/__librerp__/badge.svg?branch=migr_partner_subaccount&service=github)](https://coveralls.io/github/sergiocorato/__librerp__?branch=migr_partner_subaccount)
 ![Alt License](https://img.shields.io/badge/licence-AGPL--3-blue.svg) 
 
 
