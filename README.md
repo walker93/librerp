@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/sergiocorato/__librerp__.svg?branch=8.0)](https://travis-ci.org/sergiocorato/__librerp__)
 [![Coverage Status](https://coveralls.io/repos/sergiocorato/__librerp__/badge.svg?branch=8.0&service=github)](https://coveralls.io/github/sergiocorato/__librerp__?branch=8.0)
-
 ![Alt License](https://img.shields.io/badge/licence-AGPL--3-blue.svg) 
 
 
@@ -18,7 +17,7 @@ Contributors
 Maintainer
 ----------
 
-![Alt SimplERP.it](http://simplerp.it/images/Logo.png "SimplERP.it") 
+![Alt SimplERP.it](http://simplerp.it/images/Logo.png "http://simplerp.it") 
 
 SimplERP srl
 =======================
