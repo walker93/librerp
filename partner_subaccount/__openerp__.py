@@ -20,8 +20,8 @@
 ##############################################################################
 
 {
-    'name': 'Create one account for every res.partner',
-    'version': '4.0.1.1',
+    'name': 'Create Subaccount for partner',
+    'version': '4.0.1.2',
     'category': 'Generic Modules',
     'website': 'https://www.simplerp.it',
     "author": "Didotech SRL, Sergio Corato - SimplERP Srl",

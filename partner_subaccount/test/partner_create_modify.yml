@@ -7,24 +7,15 @@
     address:
       - city: Montecchio Maggiore
         color: 0.0
-        #complete_name: 'extraim: Montecchio Maggiore viauj'
-        #country_id: base.it
-        #find_city: true
-        #province: l10n_it_base.VI
-        #region: l10n_it_base.ven
         street: viauj
         zip: '36075'
     block_ref_customer: true
     credit_limit: 0.0
     debit_limit: 0.0
-    #invoice_warn: no-message
     name: CLIENTE
-    #picking_warn: no-message
     property_customer_ref: C114
-    #purchase_warn: no-message
-    #sale_warn: no-message
     customer: true
-    selection_account_receivable: account.a_recview
+    selection_account_receivable: account.cas
 -
   Then I verify the partner is present
 - 
@@ -69,28 +60,19 @@
     address:
       - city: Montecchio Maggiore
         color: 0.0
-        #complete_name: 'extraim: Montecchio Maggiore viauj'
-        #country_id: base.it
-        #find_city: true
-        #province: l10n_it_base.VI
-        #region: l10n_it_base.ven
         street: viau22
         zip: '36075'
     block_ref_customer: true
     block_ref_supplier: true
     credit_limit: 0.0
     debit_limit: 0.0
-    #invoice_warn: no-message
     name: CLIENTE-FORNITORE
-    #picking_warn: no-message
     property_customer_ref: C119
     property_supplier_ref: F119
-    #purchase_warn: no-message
-    #sale_warn: no-message
     customer: true
     supplier: true
-    selection_account_receivable: account.a_recview
-    selection_account_payable: account.a_payview
+    selection_account_receivable: account.cas
+    selection_account_payable: account.cli
 -
   Then I verify the partner is present
 - 
