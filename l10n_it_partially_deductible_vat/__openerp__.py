@@ -25,18 +25,18 @@
 ##############################################################################
 
 {
-    "name" : "Italy - Partially Deductible VAT",
-    "version" : "4.0.0.0",
-    "depends" : ['account'],
+    "name": "Italy - Partially Deductible VAT",
+    "version": "4.0.0.0",
+    "depends": ['account'],
     "author": """OpenERP Italian Community,Odoo Community Association (OCA),
 SimplERP srl""",
     "license": "AGPL-3",
-    "category" : "Localisation/Italy",
+    "category": "Localisation/Italy",
     'website': 'http://www.simplerp.it',
     'test': [
         'test/account_tax.xml',
         'test/tax_computation.yml',
-        ],
+    ],
     'installable': True,
     'active': False,
 }
