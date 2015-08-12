@@ -4,14 +4,10 @@
   Creating a res.partner record
 - 
   !record {model: res.partner, id: res_partner_miocliente0}:
-    address:
-      - city: Montecchio Maggiore
-        color: 0.0
-        street: viauj
-        zip: '36075'
+    city: Montecchio Maggiore
+    street: Street 5
+    zip: '36075'
     block_ref_customer: true
-    credit_limit: 0.0
-    debit_limit: 0.0
     name: CLIENTE
     property_customer_ref: C114
     customer: true
@@ -57,15 +53,11 @@
   Creating a res.partner record
 - 
   !record {model: res.partner, id: res_partner_miocliente1}:
-    address:
-      - city: Montecchio Maggiore
-        color: 0.0
-        street: viau22
-        zip: '36075'
+    city: Montecchio Maggiore
+    street: Street 5
+    zip: '36075'
     block_ref_customer: true
     block_ref_supplier: true
-    credit_limit: 0.0
-    debit_limit: 0.0
     name: CLIENTE-FORNITORE
     property_customer_ref: C119
     property_supplier_ref: F119
