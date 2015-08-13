@@ -101,7 +101,7 @@ class AccountInvoice(models.Model):
             self.pool['account.move'].write(
                 cr, uid, [inv.move_id.id], {
                     'period_id': period_id, 'date': mov_date,
-                    'ref': inv.supplier_invoice_number and \
+                    'ref': inv.supplier_invoice_number and
                     inv.supplier_invoice_number or ''})
 
             self.pool['account.move'].write(
