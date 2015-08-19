@@ -1,0 +1,93 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mail_ext
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-11 12:35+0000\n"
+"PO-Revision-Date: 2015-08-11 12:35+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mail_ext
+#: model:ir.actions.act_window,help:mail_ext.action_mail_outgoing
+msgid "<p>\n"
+"					Failed or delayed emails will be shown here. You will be able to retry failed emails and send delayed emails manually.\n"
+"                </p>\n"
+"            "
+msgstr "<p>\n"
+"					Email non inviate o differite verranno mostrate qui. Si potrà ritentare l'invio manualmente od inviare mail differite.\n"
+"                </p>\n"
+"            "
+
+#. module: mail_ext
+#: model:ir.actions.client,help:mail_ext.action_mail_sent_feeds
+msgid "<p>\n"
+"                    No message found and no message sent yet.\n"
+"                </p><p>\n"
+"                    Click on the top-right icon to compose a message. This\n"
+"                    message will be sent by email if it's an internal contact.\n"
+"                </p>\n"
+"            "
+msgstr "<p>\n"
+"                    Nessun messaggio trovato e nessun messaggio ancora inviato.\n"
+"                </p><p>\n"
+"                    Cliccare sull'icona in alto a destra per comporre un messaggio.\n"
+"                    Questo messaggio verrà inviato via email se per un contatto interno.\n"
+"                </p>\n"
+"            "
+
+#. module: mail_ext
+#: model:res.groups,comment:mail_ext.group_all_emails
+msgid "Gets access to all emails. For example to check outgoing emails."
+msgstr "Accedi a tutte le email. Per esempio per verificare le email in uscita."
+
+#. module: mail_ext
+#: model:ir.model,name:mail_ext.model_mail_message
+msgid "Message"
+msgstr "Messaggio"
+
+#. module: mail_ext
+#: model:ir.model,name:mail_ext.model_mail_notification
+msgid "Notifications"
+msgstr "Notifiche"
+
+#. module: mail_ext
+#: model:ir.actions.client,name:mail_ext.action_mail_outgoing_menu
+msgid "Open Outgoing Menu"
+msgstr "Apri Menu in uscita"
+
+#. module: mail_ext
+#: model:ir.actions.act_window,name:mail_ext.action_mail_outgoing
+#: model:ir.ui.menu,name:mail_ext.menu_mail_outgoing
+msgid "Outgoing"
+msgstr "In Uscita"
+
+#. module: mail_ext
+#: model:ir.model,name:mail_ext.model_mail_mail
+msgid "Outgoing Mails"
+msgstr "Email in Uscita"
+
+#. module: mail_ext
+#: model:ir.actions.client,name:mail_ext.action_mail_sent_feeds
+#: model:ir.ui.menu,name:mail_ext.mail_sentfeeds
+#: field:mail.message,sent:0
+msgid "Sent"
+msgstr "Inviata"
+
+#. module: mail_ext
+#: help:mail.message,sent:0
+msgid "Was message sent to someone"
+msgstr "Messaggi spediti"
+
+#. module: mail_ext
+#: model:res.groups,name:mail_ext.group_all_emails
+msgid "all_emails"
+msgstr "all_emails"
+
