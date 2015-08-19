@@ -17,25 +17,25 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 {
-    'name': 'mail_ext',
+    'name': 'Italy - Country data',
     'version': '4.0.0.0',
-    'category': 'Social Network',
+    'category': 'other',
     'description': """
-Fix mail:
-- delete access link
-- delete sent by footer
-- add mail sent
-""",
-    'author': 'Ivan Yelizariev, SimplERP srl',
-    'website': 'https://yelizariev.github.io, http://www.simplerp.it',
+    Italian country data
+    """,
+    'author': 'SimplERP SRL',
+    'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
-        'mail',
+        'sale',
     ],
     "data": [
-        'views/mail_sent_views.xml',
+        'data/res_country_data.xml',
     ],
+    "demo": [],
+    "test": [],
     "active": False,
-    "installable": True
+    "installable": True,
 }

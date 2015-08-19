@@ -17,25 +17,3 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'mail_ext',
-    'version': '4.0.0.0',
-    'category': 'Social Network',
-    'description': """
-Fix mail:
-- delete access link
-- delete sent by footer
-- add mail sent
-""",
-    'author': 'Ivan Yelizariev, SimplERP srl',
-    'website': 'https://yelizariev.github.io, http://www.simplerp.it',
-    'license': 'AGPL-3',
-    "depends": [
-        'mail',
-    ],
-    "data": [
-        'views/mail_sent_views.xml',
-    ],
-    "active": False,
-    "installable": True
-}
