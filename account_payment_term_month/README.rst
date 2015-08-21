@@ -1,10 +1,16 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
 
 
-Account invoice entry date
+Account payment term month extension
 ====================================
 
-This module allows to specify the date to be used by the move created while confirming (supplier) invoice
+This module manages commercial month for end of month deadline
+in payment terms and 2 special months, which payment can be delayed to the
+next month. The payment can be delayed from a specific day of the man only,
+as from 20th of month.
+
+For instance, if Date=15-01, Number of month=1, Day of Month=-1,
+then the due date is 28-02
 
 
 Contributors

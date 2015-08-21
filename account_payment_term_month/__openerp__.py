@@ -6,6 +6,7 @@
 #    (<http://www.agilebg.com>)
 #    Copyright (C) 2014 Didotech SRL
 #    (<http://www.didotech.com>)
+#    Copyright (C) 2015 SimplERP Srl
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -24,25 +25,19 @@
 
 {
     "name": "Payment terms - Commercial month",
-    "version": "4.0.0.0",
+    "version": "4.0.0.1",
     "author": "SimplERP Srl",
     "website": "http://www.simplerp.it",
     "category": "Account / Payments",
     "description": """
-This module manages commercial month for end of month deadline
-in payment terms and 2 special months, which payment can be delayed to the
-next month. The payment can be delayed from a specific day of the man only,
-as from 20th of month.
 
-For instance, if Date=15-01, Number of month=1, Day of Month=-1,
-then the due date is 28-02
     """,
     "depends": [
         "account",
     ],
     "demo": [],
     "data": [
-        "payment_view.xml",
+        "views/payment_view.xml",
     ],
     "test": [
         "test/invoice_emission.yml",
