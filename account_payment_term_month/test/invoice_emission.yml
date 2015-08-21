@@ -6,6 +6,7 @@
       - days: 30
         days2: -1
         value: balance
+        sequence: 5
     name: 30 days end of month
 -
   I create a supplier invoice
@@ -39,6 +40,7 @@
       - months: 1
         days2: -1
         value: balance
+        sequence: 5
     name: 30 days end of month
 -
   I create an invoice with the commercial_month payment term
@@ -120,6 +122,7 @@
       - months: 1
         days2: 10
         value: balance
+        sequence: 5
     name: 30 days end of month at 10 of month
 -
   I create an invoice with the commercial_month payment term
