@@ -1,6 +1,11 @@
 -
   I create a account payment term record.
 -
+  I set the context that will be used for the encoding of all the invoices of this file
+-
+  !context
+    'type': 'in_invoice'
+-
   !record {model: account.payment.term, id: account_payment_term_daysendofmonth0}:
     line_ids:
       - days: 30
@@ -16,7 +21,7 @@
     date_invoice: !eval "'%s-01-30' %(datetime.now().year)"
     invoice_line:
       - price_unit: 300.0
-        product_id: product.product_product_pc1
+        product_id: product.product_product_3
         quantity: 10.0
     journal_id: account.expenses_journal
     partner_id: base.res_partner_3
@@ -50,7 +55,7 @@
     date_invoice: !eval "'%s-01-30' %(datetime.now().year)"
     invoice_line:
       - price_unit: 300.0
-        product_id: product.product_product_pc1
+        product_id: product.product_product_3
         quantity: 10.0
     journal_id: account.expenses_journal
     partner_id: base.res_partner_3
@@ -74,7 +79,7 @@
     date_invoice: !eval "'%s-07-01' %(datetime.now().year)"
     invoice_line:
       - price_unit: 300.0
-        product_id: product.product_product_pc1
+        product_id: product.product_product_3
         quantity: 10.0
     journal_id: account.expenses_journal
     partner_id: base.res_partner_3
@@ -98,7 +103,7 @@
     date_invoice: !eval "'%s-07-01' %(datetime.now().year)"
     invoice_line:
       - price_unit: 300.0
-        product_id: product.product_product_pc1
+        product_id: product.product_product_3
         quantity: 10.0
     journal_id: account.expenses_journal
     partner_id: base.res_partner_3
@@ -132,7 +137,7 @@
     date_invoice: !eval "'%s-07-01' %(datetime.now().year)"
     invoice_line:
       - price_unit: 300.0
-        product_id: product.product_product_pc1
+        product_id: product.product_product_3
         quantity: 10.0
     journal_id: account.expenses_journal
     partner_id: base.res_partner_3
