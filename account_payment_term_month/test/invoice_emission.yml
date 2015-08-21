@@ -4,7 +4,6 @@
   !record {model: account.payment.term, id: account_payment_term_daysendofmonth0}:
     line_ids:
       - days: 30
-        name: default
         days2: -1
         value: balance
     name: 30 days end of month
@@ -37,8 +36,7 @@
 -
   !record {model: account.payment.term, id: account_payment_term_daysendofmonth1}:
     line_ids:
-      - name: default
-        months: 1
+      - months: 1
         days2: -1
         value: balance
     name: 30 days end of month
@@ -119,8 +117,7 @@
 -
   !record {model: account.payment.term, id: account_payment_term_daysendofmonth10daysafter}:
     line_ids:
-      - name: default
-        months: 1
+      - months: 1
         days2: 10
         value: balance
     name: 30 days end of month at 10 of month
