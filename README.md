@@ -9,7 +9,7 @@ LIBRERP.IT
 Customized version of Odoo for Italy
 
 
-[![Alt Try me on Runbot](https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas)](https://runbot.librerp.it/runbot/2/8.0) 
+[![Alt Try me on Runbot](http://simplerp.it/images/try.png)](https://runbot.librerp.it/runbot/2/8.0) 
 
 
 Contributors
