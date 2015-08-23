@@ -31,6 +31,7 @@
     "depends": [
         'report',
         'sale',
+        'account',
     ],
     "data": [
         'views/report.paperformat_euro_invoice.xml',
