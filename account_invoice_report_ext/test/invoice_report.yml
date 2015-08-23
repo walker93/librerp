@@ -16,6 +16,6 @@
     import os
     import openerp.report
     from openerp import tools
-    data, format = openerp.report.render_report(cr, uid, [ref('test_invoice_1')], 'account.report_invoice', {}, {})
+    data, format = openerp.report.render_report(cr, uid, [ref('account.account_invoice_customer0')], 'account.report_invoice', {}, {})
     if tools.config['test_report_directory']:
         file(os.path.join(tools.config['test_report_directory'], 'account-invoice.'+format), 'wb+').write(data)
