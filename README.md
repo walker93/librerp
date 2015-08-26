@@ -9,14 +9,14 @@ LIBRERP.IT
 Versione customizzata per l'Italia di Odoo.
 
 
-[![Alt Try me on Runbot](http://simplerp.it/images/try.png)](https://runbot.librerp.it/runbot/2/8.0) 
+[![Alt Try me on Runbot](https://raw.githubusercontent.com/LibrERP/librerp/8.0/try.png)](https://runbot.librerp.it/runbot/2/8.0) 
 
 
-[![Runbot](https://www.odoo.com/forum/help-1/question/what-is-odoo-runbot-19410)] è una piattaforma di test continuo del software, in cui viene generata automaticamente una nuova istanza del programma ad ogni nuova versione del software. L'istanza processa i test di utilizzo definiti nei file [![.yml](https://en.wikipedia.org/wiki/YAML)], eseguiti anche dalla piattaforma [![Travis-ci.org](https://travis-ci.org)], e resta attiva e on-line per altre prove fatte direttamente dagli sviluppatori/utenti.
+![Runbot](https://www.odoo.com/forum/help-1/question/what-is-odoo-runbot-19410) è una piattaforma di test continuo del software, in cui viene generata automaticamente una nuova istanza del programma ad ogni nuova versione del software. L'istanza processa i test di utilizzo definiti nei file ![.yml](https://en.wikipedia.org/wiki/YAML), eseguiti anche dalla piattaforma ![Travis-ci.org](https://travis-ci.org), e resta attiva e on-line per altre prove fatte direttamente dagli sviluppatori/utenti.
 
 Una differenza importante dalla versione utilizzata in produzione è (oltre alla presenza di dati di test quali fatture, clienti, fornitori, ecc.) la presenza di un piano dei conti e di imposte "universali", necessarie per poter eseguire i test di moduli utilizzati in tutte le nazioni indistintamente, che non vengono poi installati in produzione.
 
-Il [![Coverage Status](https://coveralls.io)] segnala invece quante righe del codice vengono testate, un'informazione importante per capire quanto i programmatori si preoccupano che il loro codice sia effettivamente funzionante, in quanto se i test sono molto ridotti non sono di grande utilità.
+Il ![Coverage Status](https://coveralls.io) segnala invece quante righe del codice vengono testate, un'informazione importante per capire quanto i programmatori si preoccupano che il loro codice sia effettivamente funzionante, in quanto se i test sono molto ridotti non sono di grande utilità.
 
 
 Contributors
