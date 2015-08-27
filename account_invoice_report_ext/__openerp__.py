@@ -32,13 +32,14 @@
         'report',
         'sale',
         'account',
+        'l10n_it_fiscalcode',
     ],
     "data": [
         'views/report.paperformat_euro_invoice.xml',
         'views/account_invoice_report.xml',
         'views/report.external_layout_header_inh.xml',
         'views/report.external_layout_footer_inh.xml',
-        'views/report.report_invoice_document_inh.xml',
+        'views/account.report_invoice_document_inh.xml',
     ],
     "demo": [],
     "test": [
