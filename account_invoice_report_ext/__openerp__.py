@@ -19,7 +19,7 @@
 ##############################################################################
 
 {
-    'name': 'Italy - SimplERP Srl invoice report',
+    'name': 'Italy - Improved invoice report',
     'version': '4.0.0.0',
     'category': 'other',
     'description': """
