@@ -9,7 +9,7 @@ LIBRERP.IT
 Versione customizzata per l'Italia di Odoo.
 
 
-[![Alt Try me on Runbot](https://raw.githubusercontent.com/LibrERP/librerp/8.0/try.png)](https://runbot.librerp.it/runbot/2/8.0) 
+[![Alt Try me on Runbot](https://raw.githubusercontent.com/LibrERP/librerp/8.0/try.png)](https://runbot.librerp.it/runbot/) 
 
 
 [Runbot](https://www.odoo.com/forum/help-1/question/what-is-odoo-runbot-19410) è una piattaforma di test continuo del software, in cui viene generata automaticamente una nuova istanza del programma ad ogni nuova versione del software. L'istanza processa i test di utilizzo definiti nei file [.yml](https://en.wikipedia.org/wiki/YAML), eseguiti anche dalla piattaforma [Travis-ci.org](https://travis-ci.org), e resta attiva e on-line per altre prove fatte direttamente dagli sviluppatori/utenti.
