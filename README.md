@@ -8,13 +8,15 @@ LIBRERP.IT
 
 Versione customizzata per l'Italia di Odoo.
 
-
-[![Alt Try Demo](https://raw.githubusercontent.com/LibrERP/librerp/8.0/try.png)](https://demo.simplerp.it/) 
+Prova la demo:
+- per uso generico v. 8.0 (https://odoo8demo.simplerp.it/)
+- per punto cassa v. 8.0 (https://odoo8pos.simplerp.it/)
+- per punto cassa v. saas-6 (https://odoosaas6pos.simplerp.it/)
 
 
 La piattaforma [Travis-ci.org](https://travis-ci.org) processa i test di utilizzo definiti nei file [.yml](https://en.wikipedia.org/wiki/YAML), che danno il "semaforo verde" alla possibilità di installare il sistema senza errori. Questi dati di test non vengono usati in produzione.
 
-Sulla [Demo](https://demo.simplerp.it) è invece possibile fare dei test reali, in quanto non vengono installati il piano dei conti e delle imposte "universali", ma (uno di) quelli utilizzabili effettivamente.
+Sulla demo è invece possibile fare dei test reali, in quanto non vengono installati il piano dei conti e delle imposte "universali", ma (uno di) quelli utilizzabili effettivamente.
 
 Il [Coverage Status](https://coveralls.io) segnala invece quante righe del codice vengono testate, un'informazione importante per capire quanto i programmatori si preoccupano che il loro codice sia effettivamente funzionante, in quanto se i test sono molto ridotti non sono di grande utilità.
 
