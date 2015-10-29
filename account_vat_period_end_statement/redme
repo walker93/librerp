@@ -1,0 +1,3 @@
+da interest_rate a interest_percent
+tolto quarter_vat_period da account.fiscalyear
+in res.company da interest_quarter_vat_account_id a 
