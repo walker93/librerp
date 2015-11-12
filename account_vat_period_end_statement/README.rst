@@ -24,8 +24,11 @@ amount to pay ('Balance').
 The statement can be paid like every other debit: by voucher or 'move.line'
 reconciliation.
 
+If you need to calculate interest, you can add default information in your
+company data (percentage and account).
+
 Specification:
-http://wiki.openerp-italia.org/doku.php/moduli/vat_period_end_statement
+http://wiki.odoo-italia.org/doku.php/moduli/vat_period_end_statement
 
 Credits
 =======
@@ -34,10 +37,12 @@ Contributors
 ------------
 
 * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+* Elena Carlesso <ecarlesso@linkgroup.it>
 * Marco Marchiori <marcomarkiori@gmail.com>
 * Sergio Corato <sergiocorato@gmail.com>
 * Andrea Gallina <a.gallina@apuliasoftware.it>
 * Alex Comba <alex.comba@agilebg.com>
+* Alessandro Camilli <camillialex@gmail.com>
 
 Maintainer
 ----------
@@ -46,10 +51,4 @@ Maintainer
    :alt: Odoo Community Association
    :target: http://odoo-community.org
 
-This module is maintained by the OCA.
-
-OCA, or the Odoo Community Association, is a nonprofit organization whose
-mission is to support the collaborative development of Odoo features and
-promote its widespread use.
-
-To contribute to this module, please visit http://odoo-community.org.
+This module is maintained by SimplERP Srl.

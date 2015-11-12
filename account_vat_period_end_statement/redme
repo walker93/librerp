@@ -1,3 +1,38 @@
 da interest_rate a interest_percent
+no interest_amount
 tolto quarter_vat_period da account.fiscalyear
 in res.company da interest_quarter_vat_account_id a 
+campo interest boolean
+
+i campi seguenti sono definiti in l10n_it_account:
+    vat_statement_type
+    is_base
+
+viste eliminate
+
+<!--    fy      -->
+        <record id="view_account_fiscalyear_form_quarter_vat_period" model="ir.ui.view">
+            <field name="name">account.fiscalyear.form</field>
+            <field name="model">account.fiscalyear</field>
+            <field name="inherit_id" ref="account.view_account_fiscalyear_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="end_journal_period_id" position="after">
+                    <field name="quarter_vat_period"/>
+                </field>
+            </field>
+        </record>
+
+<!--    company     -->
+
+        <record model="ir.ui.view" id="view_company_form_quarter_vat">
+            <field name="name">res.company.form.inherit.quarter.vat</field>
+            <field name="inherit_id" ref="account.view_company_inherit_form"/>
+            <field name="model">res.company</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="overdue_msg" position="after">
+                    <field name="interest_quarter_vat_account_id" />
+                </field>
+            </field>
+        </record>

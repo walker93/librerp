@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#
-#    Copyright (C) 2011-2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
-#    Copyright (C) 2014 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
+#    Copyright (C) 2015 Agile Business Group <http://www.agilebg.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -19,8 +15,5 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#
 
-from . import vat_registry
-from . import wizard
-#from . import account
+from . import test_account

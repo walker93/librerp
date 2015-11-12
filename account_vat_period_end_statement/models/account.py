@@ -305,44 +305,99 @@ class AccountVatPeriodEndStatement(orm.Model):
                 'paid': [('readonly', True)],
                 'draft': [('readonly', False)]}),
 
-        'authority_partner_id': fields.many2one('res.partner', 'Tax Authority Partner', states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
-        'authority_vat_account_id': fields.many2one('account.account', 'Tax Authority VAT Account', required=True, states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
-        'authority_vat_amount': fields.function(_compute_authority_vat_amount, method=True, string='Authority VAT Amount'),
-        'payable_vat_amount': fields.function(_compute_payable_vat_amount, method=True, string='Payable VAT Amount'),
-        'deductible_vat_amount': fields.function(_compute_deductible_vat_amount, method=True, string='Deductible VAT Amount'),
+        'authority_partner_id': fields.many2one(
+            'res.partner', 'Tax Authority Partner',
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
+        'authority_vat_account_id': fields.many2one(
+            'account.account', 'Tax Authority VAT Account', required=True,
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
+        'authority_vat_amount': fields.function(
+            _compute_authority_vat_amount, method=True,
+            string='Authority VAT Amount'),
+        'payable_vat_amount': fields.function(
+            _compute_payable_vat_amount, method=True,
+            string='Payable VAT Amount'),
+        'deductible_vat_amount': fields.function(
+            _compute_deductible_vat_amount, method=True,
+            string='Deductible VAT Amount'),
 
-        'journal_id': fields.many2one('account.journal', 'Journal', required=True, states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
-        'date': fields.date('Date', required=True, states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
-        'move_id': fields.many2one('account.move', 'VAT statement move', readonly=True),
-        #'voucher_id': fields.many2one('account.voucher', 'VAT payment', readonly=True),
+        'journal_id': fields.many2one(
+            'account.journal', 'Journal', required=True,
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
+        'date': fields.date(
+            'Date', required=True,
+            states={
+                'confirmed': [('readonly', True)],
+                'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
+        'move_id': fields.many2one(
+            'account.move', 'VAT statement move', readonly=True),
 
-        'state': fields.selection([('draft', 'Draft'),
-                                   ('confirmed', 'Confirmed'),
-                                   ('paid', 'Paid'), ],
-                                  'State', readonly=True),
-            
-        'payment_term_id': fields.many2one('account.payment.term', 'Payment Term',
-                                           states={'confirmed': [('readonly', True)], 'paid': [('readonly', True)], 'draft': [('readonly', False)]}),
+        'state': fields.selection([
+            ('draft', 'Draft'),
+            ('confirmed', 'Confirmed'),
+            ('paid', 'Paid'),
+        ], 'State', readonly=True),
 
-        'reconciled': fields.function(_reconciled, string='Paid/Reconciled', type='boolean',
-                                      store={'account.vat.period.end.statement': (lambda self, cr, uid, ids, c={}: ids, None, 50),
-                                             'account.move.line': (_get_statement_from_line, None, 50),
-                                             'account.move.reconcile': (_get_statement_from_reconcile, None, 50), },
-                                      help="It indicates that the statement has been paid and the journal entry of the statement has been reconciled with one or several journal entries of payment."),
-        'residual': fields.function(_amount_residual, digits_compute=dp.get_precision('Account'), string='Balance',
-                                    store={'account.vat.period.end.statement': (lambda self, cr, uid, ids, c={}: ids, ['debit_vat_account_line_ids', 'credit_vat_account_line_ids', 'generic_vat_account_line_ids', 'move_id', 'state'], 50),
-                                           'statement.credit.account.line': (_get_credit_line, ['amount', 'statement_id'], 50),
-                                           'statement.debit.account.line': (_get_debit_line, ['amount', 'statement_id'], 50),
-                                           'statement.generic.account.line': (_get_generic_line, ['amount', 'statement_id'], 50),
-                                           'account.move': (_get_statement_from_move, None, 50),
-                                           'account.move.line': (_get_statement_from_line, None, 50),
-                                           'account.move.reconcile': (_get_statement_from_reconcile, None, 50), },
-                                    help="Remaining amount due."),
-        'payment_ids': fields.function(_compute_lines, relation='account.move.line', type="many2many", string='Payments'),
-        'period_ids': fields.one2many('account.period', 'vat_statement_id', 'Periods'),
-        'interest_rate': fields.float('Interest rate for quarter', digits_compute=dp.get_precision('Account')),
-        'interest_amount': fields.function(_compute_interest_vat_amount, method=True, string='Authority VAT Interest Amount'),
-        'fiscal_page_base': fields.integer('Last printed page n.'),
+        'payment_term_id': fields.many2one(
+            'account.payment.term', 'Payment Term',
+            states={
+                'confirmed': [
+                    ('readonly', True)], 'paid': [('readonly', True)],
+                'draft': [('readonly', False)]}),
+
+        'reconciled': fields.function(
+            _reconciled, string='Paid/Reconciled', type='boolean',
+            store={
+                'account.vat.period.end.statement': (
+                    lambda self, cr, uid, ids, c={}: ids, None, 50),
+                'account.move.line': (_get_statement_from_line, None, 50),
+                'account.move.reconcile': (
+                    _get_statement_from_reconcile, None, 50),
+            }, help="It indicates that the statement has been paid and the "
+                    "journal entry of the statement has been reconciled with "
+                    "one or several journal entries of payment."),
+        'residual': fields.function(
+            _amount_residual, digits_compute=dp.get_precision('Account'),
+            string='Balance',
+            store={
+                'account.vat.period.end.statement': (
+                    lambda self, cr, uid, ids, c={}: ids,
+                    [
+                        'debit_vat_account_line_ids',
+                        'credit_vat_account_line_ids',
+                        'generic_vat_account_line_ids', 'move_id', 'state'
+                    ], 50),
+                'statement.credit.account.line': (
+                    _get_credit_line, ['amount', 'statement_id'], 50),
+                'statement.debit.account.line': (
+                    _get_debit_line, ['amount', 'statement_id'], 50),
+                'statement.generic.account.line': (
+                    _get_generic_line, ['amount', 'statement_id'], 50),
+                'account.move': (_get_statement_from_move, None, 50),
+                'account.move.line': (_get_statement_from_line, None, 50),
+                'account.move.reconcile': (
+                    _get_statement_from_reconcile, None, 50),
+            },
+            help="Remaining amount due."),
+        'payment_ids': fields.function(
+            _compute_lines, relation='account.move.line', type="many2many",
+            string='Payments'),
+        'period_ids': fields.one2many(
+            'account.period', 'vat_statement_id', 'Periods'),
+        'interest': fields.boolean('Compute Interest'),
+        'interest_percent': fields.float('Interest - Percent'),
+        'fiscal_page_base': fields.integer('Last printed page', required=True)
+
     }
 
     _defaults = {
@@ -495,21 +550,21 @@ class AccountVatPeriodEndStatement(orm.Model):
                 else:
                     generic_vat_data['credit'] = math.fabs(generic_line.amount)
                 line_obj.create(cr, uid, generic_vat_data)
-
-            if statement.interest_amount > 0.0:
-                company = self.pool['res.users'].browse(cr, uid, uid, context).company_id
-                if not company.interest_quarter_vat_account_id:
-                    raise orm.except_orm(_('Error'),
-                                             _('In the company is not configured the account for interest amount'))
-                interest_amount_data = {'name': _('Interest Amount for Quarter VAT'),
-                                    'account_id': company.interest_quarter_vat_account_id.id,
-                                    'move_id': move_id,
-                                    'journal_id': statement.journal_id.id,
-                                    'debit': math.fabs(statement.interest_amount),
-                                    'credit': 0.0,
-                                    'date': statement.date,
-                                    'period_id': period_ids[0], }
-                line_obj.create(cr, uid, interest_amount_data)
+# da verificare
+#            if statement.interest_amount > 0.0:
+#                company = self.pool['res.users'].browse(cr, uid, uid, context).company_id
+#                if not company.interest_quarter_vat_account_id:
+#                    raise orm.except_orm(_('Error'),
+#                                             _('In the company is not configured the account for interest amount'))
+#                interest_amount_data = {'name': _('Interest Amount for Quarter VAT'),
+#                                    'account_id': company.interest_quarter_vat_account_id.id,
+#                                    'move_id': move_id,
+#                                    'journal_id': statement.journal_id.id,
+#                                    'debit': math.fabs(statement.interest_amount),
+#                                    'credit': 0.0,
+#                                    'date': statement.date,
+#                                    'period_id': period_ids[0], }
+#                line_obj.create(cr, uid, interest_amount_data)
 
             end_debit_vat_data = {
                 'name': _('Tax Authority VAT'),
@@ -523,7 +578,7 @@ class AccountVatPeriodEndStatement(orm.Model):
             if statement.authority_vat_amount > 0:
                 end_debit_vat_data['debit'] = 0.0
                 end_debit_vat_data['credit'] = math.fabs(
-                    statement.authority_vat_amount) + math.fabs(statement.interest_amount)
+                    statement.authority_vat_amount)# + math.fabs(statement.interest_amount) non esiste più
                 if statement.payment_term_id:
                     due_list = term_pool.compute(
                         cr, uid, statement.payment_term_id.id, math.fabs(
@@ -552,6 +607,11 @@ class AccountVatPeriodEndStatement(orm.Model):
         return True
 
     def compute_amounts(self, cr, uid, ids, context=None):
+        if context is None:
+            context = {}
+        statement_generic_account_line_obj = self.pool[
+            'statement.generic.account.line']
+        decimal_precision_obj = self.pool['decimal.precision']
         debit_line_pool = self.pool.get('statement.debit.account.line')
         credit_line_pool = self.pool.get('statement.credit.account.line')
         for statement in self.browse(cr, uid, ids, context):
@@ -578,7 +638,7 @@ class AccountVatPeriodEndStatement(orm.Model):
             tax_code_pool = self.pool.get('account.tax.code')
             debit_tax_code_ids = tax_code_pool.search(cr, uid, [
                 ('vat_statement_account_id', '!=', False),
-                ('exclude_from_registries', '!=', True),
+                #('exclude_from_registries', '!=', True),
                 ('vat_statement_type', '=', 'debit'),
             ], context=context)
             for debit_tax_code_id in debit_tax_code_ids:
@@ -598,7 +658,7 @@ class AccountVatPeriodEndStatement(orm.Model):
 
             credit_tax_code_ids = tax_code_pool.search(cr, uid, [
                 ('vat_statement_account_id', '!=', False),
-                ('exclude_from_registries', '!=', True),
+                #('exclude_from_registries', '!=', True),
                 ('vat_statement_type', '=', 'credit'),
             ], context=context)
             for credit_tax_code_id in credit_tax_code_ids:

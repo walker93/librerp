@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+#
 #
 #    OpenERP, Open Source Management Solution
 #    Copyright (C) 2011-2012 Domsense s.r.l. (<http://www.domsense.com>).
-#    Copyright (C) 2012 Agile Business Group sagl (<http://www.agilebg.com>)
-#    Copyright (C) 2013 Associazione OpenERP Italia
-#    (<http://www.openerp-italia.org>).
+#    Copyright (C) 2012-15 Agile Business Group sagl (<http://www.agilebg.com>)
+#    Copyright (C) 2012-15 LinkIt Spa (<http://http://www.linkgroup.it>)
+#    Copyright (C) 2015 Associazione Odoo Italia
+#    (<http://www.odoo-italia.org>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -20,44 +21,34 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 
 {
     "name": "Period End VAT Statement",
-    "version": "4.0.0.0",
+    "version": "8.1.2.0.0",
     'category': 'Generic Modules/Accounting',
-    "depends": ["account_voucher", "report_webkit"],
-    "author": ["Agile Business Group", "OpenERP Italian Community", "Didotech srl", "SimplerERP srl"],
-    "description": """
-    
-This module helps to register the VAT statement of period end.
-    
-In order to load correct amount from tax code, the tax code has to be associated to account involved in statement, through tax code form.
-
-The 'VAT statement' object allows to specify every amount and relative account used by the statement.
-By default, amounts of debit and credit taxes are automatically loaded from tax codes of selected periods.
-Previous debit or credit is loaded from previous VAT statement, according to its payments status.
-Confirming the statement, the 'account.move' is created. If you select a payment term, the due date(s) will be set.
-
-The 'tax authority' tab contains information about payment(s). You can see statement's result ('authority VAT amount') and residual amount to pay ('Balance').
-The statement can be paid like every other debit: by voucher or 'move.line' reconciliation.
-
-In case of VAT statement for quarter period, it can be configured the interest rate.
-
-Specification: http://wiki.openerp-italia.org/doku.php/moduli/vat_period_end_statement
-
-""",
+    'license': 'AGPL-3',
+    "depends": [
+        "l10n_it_account",
+        "account_voucher",
+        "report",
+        "l10n_it_fiscalcode",
+        ],
+    "author": "Agile Business Group, Odoo Community Association (OCA)"
+              ", LinkIt Spa, SimplERP Srl",
     'website': 'http://www.simplerp.it',
     'data': [
         'wizard/add_period.xml',
         'wizard/remove_period.xml',
-        'account_view.xml',
+        #'account_view.xml',
         'statement_workflow.xml',
         'security/ir.model.access.csv',
         'reports.xml',
-        ],
+        'views/report_vatperiodendstatement.xml',
+        'views/config.xml',
+        'views/account_view.xml',
+    ],
     'demo': [],
     'installable': True,
-    'active': False,
 }
