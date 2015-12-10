@@ -37,7 +37,7 @@ class AccountInvoice(models.Model):
             'paid': [('readonly', True)],
             'open': [('readonly', True)],
             'close': [('readonly', True)]
-            },
+        },
         select=True,
         help="Keep empty to use the current date")
 
@@ -78,7 +78,7 @@ class AccountInvoice(models.Model):
                     ('date_start', '<=', date_start),
                     ('date_stop', '>=', date_stop),
                     ('company_id', '=', inv.company_id.id)
-                    ])
+                ])
             if period_ids:
                 period_id = period_ids[0]
 
@@ -91,7 +91,7 @@ class AccountInvoice(models.Model):
             self.pool['account.move'].write(
                 cr, uid, [inv.move_id.id], {'state': 'draft'})
 
-            sql = "update account_move_line set period_id="+str(
+            sql = "update account_move_line set period_id=" + str(
                 period_id) + ", date = '" + mov_date + "', ref = '" + \
                 (inv.supplier_invoice_number and inv.supplier_invoice_number or '') + \
                 "' where move_id = " + str(inv.move_id.id)
