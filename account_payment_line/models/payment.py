@@ -57,7 +57,7 @@ class account_invoice(models.Model):
         amount = 0
         for line in move_lines:
             if line[2].get('date_maturity', False):
-                amount += (line[2]['credit'] > 0 and line[2]['credit'] or \
+                amount += (line[2]['credit'] > 0 and line[2]['credit'] or
                            line[2]['debit'])
         if self.payment_term:
             totlines = self.payment_term.compute(

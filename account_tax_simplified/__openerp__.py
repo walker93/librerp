@@ -29,6 +29,7 @@
     "depends": [
         'account',
         'base_vat',
+        'account_vat_period_end_statement',
     ],
     "data": [
         'data/account_tax_view.xml',
