@@ -34,7 +34,6 @@
     """,
     "depends": [
         "account",
-        "account_payment_line",
     ],
     "demo": [],
     "data": [
