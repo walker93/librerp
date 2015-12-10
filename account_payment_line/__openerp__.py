@@ -26,6 +26,7 @@
     "category": "Account / Payments",
     "depends": [
         "account",
+        "account_payment_term_month",
     ],
     "data": [
         "views/payment_view.xml",
