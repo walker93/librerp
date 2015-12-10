@@ -30,7 +30,6 @@ class account_tax(models.Model):
     @api.depends('tax_id', 'defaults')
     def copy(self):
         raise Warning(_("Tax can't be duplicated"))
-        return False
 
     @api.model
     def create(self, vals):
