@@ -59,11 +59,11 @@ class account_tax(models.Model):
                 'code': parent_base_tax_code.code + vals['description'],
                 'parent_id': vals['account_base_tax_code_id'],
                 'is_base': True,
-                'vat_statement_type': \
-                vals['type_tax_use'] == 'sale' and 'debit' or \
+                'vat_statement_type':
+                vals['type_tax_use'] == 'sale' and 'debit' or
                 vals['type_tax_use'] == 'purchase' and 'credit',
-                'vat_statement_sign': \
-                vals['type_tax_use'] == 'sale' and 1 or \
+                'vat_statement_sign':
+                vals['type_tax_use'] == 'sale' and 1 or
                 vals['type_tax_use'] == 'purchase' and -1,
             }
             i = 0
@@ -87,11 +87,11 @@ class account_tax(models.Model):
                 'code': parent_tax_code.code + vals['description'],
                 'parent_id': vals['account_tax_code_id'],
                 'is_base': False,
-                'vat_statement_type': \
-                vals['type_tax_use'] == 'sale' and 'debit' or \
+                'vat_statement_type':
+                vals['type_tax_use'] == 'sale' and 'debit' or
                 vals['type_tax_use'] == 'purchase' and 'credit',
-                'vat_statement_sign': \
-                vals['type_tax_use'] == 'sale' and 1 or \
+                'vat_statement_sign':
+                vals['type_tax_use'] == 'sale' and 1 or
                 vals['type_tax_use'] == 'purchase' and -1,
             }
             i = 0
@@ -126,7 +126,7 @@ class account_tax(models.Model):
         if (vals.get('type_tax_use', False) or tax.type_tax_use) == 'sale':
             vals.update({'base_sign': 1, 'tax_sign': 1,
                          'ref_base_sign': -1, 'ref_tax_sign': -1})
-        elif (vals.get('type_tax_use', False) or \
+        elif (vals.get('type_tax_use', False) or
               tax.type_tax_use) == 'purchase':
             vals.update({'base_sign': -1, 'tax_sign': -1,
                          'ref_base_sign': 1, 'ref_tax_sign': 1})
@@ -147,12 +147,12 @@ class account_tax(models.Model):
                     vals.get('account_base_tax_code_id'),
                     'is_base': True,
                     'vat_statement_type': (
-                        tax.type_tax_use or \
+                        tax.type_tax_use or
                         vals.get('type_tax_use')) == 'sale' and 'debit' or (
                             tax.type_tax_use or vals.get(
                                 'type_tax_use')) == 'purchase' and 'credit',
                     'vat_statement_sign': (
-                        tax.type_tax_use or \
+                        tax.type_tax_use or
                         vals.get('type_tax_use')) == 'sale' and 1 or (
                             tax.type_tax_use or vals.get(
                                 'type_tax_use')) == 'purchase' and -1,
@@ -169,9 +169,9 @@ class account_tax(models.Model):
                     tax_code_obj.browse(vals['account_tax_code_id'])
                 tax_code_vals = {
                     'name': tax.name or vals.get('name'),
-                    'code': parent_tax_code.code + tax.description or \
+                    'code': parent_tax_code.code + tax.description or
                     vals.get('description'),
-                    'parent_id': tax.account_tax_code_id.id or \
+                    'parent_id': tax.account_tax_code_id.id or
                     vals.get('account_tax_code_id'),
                     'is_base': False,
                     'vat_statement_type': (

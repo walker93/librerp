@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-##############################################################################
 #
-#    Copyright (C) 2015 Sergio Corato - SimplERP srl
+#
+#    Copyright (C) 2015 SimplERP srl (<http://www.simplerp.it>).
 #    Copyright (C) 2014 Didotech srl
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -12,24 +12,17 @@
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+#    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 {
     'name': 'Simplified tax view and creation',
-    'version': '4.1.0.0',
+    'version': '8.0.1.0.0',
     'category': 'Localisation/Italy',
-    'description': """This module customizes OpenERP in order to fit italian laws and mores - Account version
-
-Functionalities:
-
-- Simplify creation of tax
-
-""",
     'author': 'Sergio Corato',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
@@ -41,7 +34,5 @@ Functionalities:
     "data": [
         'data/account_tax_view.xml',
     ],
-    "demo": [],
-    "active": False,
     "installable": True
 }
