@@ -2,7 +2,6 @@
 #
 #
 #    Copyright (C) 2015 SimplERP srl (<http://www.simplerp.it>).
-#    Copyright (C) 2014 Didotech srl
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -18,20 +17,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-
-{
-    'name': 'Simplified tax view and creation',
-    'version': '8.0.1.0.0',
-    'category': 'Localisation/Italy',
-    'author': 'Sergio Corato',
-    'website': 'http://www.simplerp.it',
-    'license': 'AGPL-3',
-    "depends": [
-        'account',
-        'base_vat',
-    ],
-    "data": [
-        'data/account_tax_view.xml',
-    ],
-    "installable": True
-}
+from . import payment

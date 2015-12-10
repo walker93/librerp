@@ -2,7 +2,6 @@
 #
 #
 #    Copyright (C) 2015 SimplERP srl (<http://www.simplerp.it>).
-#    Copyright (C) 2014 Didotech srl
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -20,18 +19,16 @@
 #
 
 {
-    'name': 'Simplified tax view and creation',
-    'version': '8.0.1.0.0',
-    'category': 'Localisation/Italy',
-    'author': 'Sergio Corato',
-    'website': 'http://www.simplerp.it',
-    'license': 'AGPL-3',
+    "name": "Payment terms for line",
+    "version": "8.1.0.0.0",
+    "author": "SimplERP srl",
+    "website": "http://www.simplerp.it",
+    "category": "Account / Payments",
     "depends": [
-        'account',
-        'base_vat',
+        "account",
     ],
     "data": [
-        'data/account_tax_view.xml',
+        "views/payment_view.xml",
     ],
-    "installable": True
+    "installable": True,
 }
