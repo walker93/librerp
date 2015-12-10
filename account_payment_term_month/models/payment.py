@@ -22,7 +22,7 @@
 ##############################################################################
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from openerp import fields, models, api, _
+from openerp import fields, models, api
 
 PAYMENT_TERM_TYPE_SELECTION = [
     ('BB', 'Bonifico Bancario'),
@@ -55,7 +55,7 @@ class account_payment_term_line(models.Model):
         help="Number of month to add before computation of the day of "
         "month. If Date=15-01, Number of month=1, Day of Month=-1, "
         "then the due date is 28-02. If compiled, there is no "
-        "need to compile the field Days."),
+        "need to compile the field Days.")
     value = fields.Selection([
         ('procent', 'Percent'),
         ('balance', 'Balance'),
