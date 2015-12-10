@@ -141,9 +141,9 @@ class account_tax(models.Model):
                     tax_code_obj.browse(vals['account_base_tax_code_id'])
                 base_tax_code_vals = {
                     'name': tax.name or vals.get('name') + ' (imp)',
-                    'code': parent_base_tax_code.code + tax.description or \
+                    'code': parent_base_tax_code.code + tax.description or
                     vals.get('description'),
-                    'parent_id': tax.account_base_tax_code_id.id or \
+                    'parent_id': tax.account_base_tax_code_id.id or
                     vals.get('account_base_tax_code_id'),
                     'is_base': True,
                     'vat_statement_type': (
@@ -178,7 +178,7 @@ class account_tax(models.Model):
                         tax.type_tax_use or vals.get(
                             'type_tax_use')) == 'sale' and 'debit' or (
                                 tax.type_tax_use or vals.get(
-                                    'type_tax_use')) == 'purchase' and \
+                                    'type_tax_use')) == 'purchase' and
                     'credit',
                     'vat_statement_sign': (
                         tax.type_tax_use or vals.get(

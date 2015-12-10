@@ -135,7 +135,8 @@ class account_payment_term(orm.Model):
                                 next_date.day >= pt.min_day_to_be_delayed2:
                             next_date += relativedelta(
                                 day=pt.days_to_be_delayed2, months=1)
-                    result.append((next_date.strftime('%Y-%m-%d'), amt, line.type))
+                    result.append((
+                        next_date.strftime('%Y-%m-%d'), amt, line.type))
                 else:
                     next_date = (datetime.strptime(date_ref, '%Y-%m-%d')
                                  + relativedelta(days=line.days))
@@ -164,6 +165,7 @@ class account_payment_term(orm.Model):
                                 next_date.day >= pt.min_day_to_be_delayed2:
                             next_date += relativedelta(
                                 day=pt.days_to_be_delayed2, months=1)
-                    result.append((next_date.strftime('%Y-%m-%d'), amt, line.type))
+                    result.append((
+                        next_date.strftime('%Y-%m-%d'), amt, line.type))
                 amount -= amt
         return result
