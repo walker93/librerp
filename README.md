@@ -28,7 +28,7 @@ Contributors
 Maintainer
 ----------
 
-![Alt SimplERP.it](https://www.simplerp.it/website/image/ir.attachment/206_346e3a4/datas "http://simplerp.it") 
+http://librerp.it 
 
 SimplERP Srl
 =======================
