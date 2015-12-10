@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
-##############################################################################
 #
-#    Copyright (C) 2014 Didotech srl
-#    (<http://www.didotech.com>).
+#
+#    Copyright (C) 2015 SimplERP srl (<http://www.simplerp.it>).
+#    Copyright (C) 2014 Didotech SRL (<http://www.didotech.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
+#    it under the terms of the GNU Affero General Public License as published
+#    by the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+#    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-##############################################################################
+#
 
 from openerp import models, fields, api, _
 from openerp.exceptions import Warning
@@ -42,22 +42,29 @@ class account_tax(models.Model):
             if self.search([('description', '=', vals['description'])]):
                 raise Warning(_("Tax description must be unique."))
         if vals['type_tax_use'] == 'sale':
-            vals.update({'base_sign': 1, 'tax_sign': 1, 'ref_base_sign': -1, 'ref_tax_sign': -1})
+            vals.update({'base_sign': 1, 'tax_sign': 1,
+                         'ref_base_sign': -1, 'ref_tax_sign': -1})
         elif vals['type_tax_use'] == 'purchase':
-            vals.update({'base_sign': -1, 'tax_sign': -1, 'ref_base_sign': 1, 'ref_tax_sign': 1})
+            vals.update({'base_sign': -1, 'tax_sign': -1,
+                         'ref_base_sign': 1, 'ref_tax_sign': 1})
 
         if vals.get('base_code_id', False) and vals.get('tax_code_id', False):
             return super(account_tax, self).create(vals)
 
-        if not vals.get('base_code_id', False) and vals.get('account_base_tax_code_id', False):
-            parent_base_tax_code = tax_code_obj.browse(vals['account_base_tax_code_id'])
+        if 'base_code_id' not in vals and 'account_base_tax_code_id' in vals:
+            parent_base_tax_code = tax_code_obj.browse(
+                vals['account_base_tax_code_id'])
             base_tax_code_vals = {
                 'name': vals['name'] + ' (imp)',
                 'code': parent_base_tax_code.code + vals['description'],
                 'parent_id': vals['account_base_tax_code_id'],
                 'is_base': True,
-                'vat_statement_type': vals['type_tax_use'] == 'sale' and 'debit' or vals['type_tax_use'] == 'purchase' and 'credit',
-                'vat_statement_sign': vals['type_tax_use'] == 'sale' and 1 or vals['type_tax_use'] == 'purchase' and -1,
+                'vat_statement_type': \
+                vals['type_tax_use'] == 'sale' and 'debit' or \
+                vals['type_tax_use'] == 'purchase' and 'credit',
+                'vat_statement_sign': \
+                vals['type_tax_use'] == 'sale' and 1 or \
+                vals['type_tax_use'] == 'purchase' and -1,
             }
             i = 0
             name = vals['name'] + ' (imp)'
@@ -72,15 +79,20 @@ class account_tax(models.Model):
             base_code = tax_code_obj.create(base_tax_code_vals)
             vals.update({'base_code_id': base_code.id})
 
-        if not vals.get('tax_code_id', False) and vals.get('account_tax_code_id', False):
+        if not vals.get('tax_code_id', False) and vals.get(
+                'account_tax_code_id', False):
             parent_tax_code = tax_code_obj.browse(vals['account_tax_code_id'])
             tax_code_vals = {
                 'name': vals['name'],
                 'code': parent_tax_code.code + vals['description'],
                 'parent_id': vals['account_tax_code_id'],
                 'is_base': False,
-                'vat_statement_type': vals['type_tax_use'] == 'sale' and 'debit' or vals['type_tax_use'] == 'purchase' and 'credit',
-                'vat_statement_sign': vals['type_tax_use'] == 'sale' and 1 or vals['type_tax_use'] == 'purchase' and -1,
+                'vat_statement_type': \
+                vals['type_tax_use'] == 'sale' and 'debit' or \
+                vals['type_tax_use'] == 'purchase' and 'credit',
+                'vat_statement_sign': \
+                vals['type_tax_use'] == 'sale' and 1 or \
+                vals['type_tax_use'] == 'purchase' and -1,
             }
             i = 0
             name = vals['name']
@@ -109,41 +121,70 @@ class account_tax(models.Model):
                 raise Warning(_("Tax description must be unique."))
         if vals.get('type_tax_use', False):
             if vals['type_tax_use'] != tax.type_tax_use:
-                raise Warning(_("Tax Type cannot be changed - create a different tax."))
+                raise Warning(_(
+                    "Tax Type cannot be changed - create a different tax."))
         if (vals.get('type_tax_use', False) or tax.type_tax_use) == 'sale':
-            vals.update({'base_sign': 1, 'tax_sign': 1, 'ref_base_sign': -1, 'ref_tax_sign': -1})
-        elif (vals.get('type_tax_use', False) or tax.type_tax_use) == 'purchase':
-            vals.update({'base_sign': -1, 'tax_sign': -1, 'ref_base_sign': 1, 'ref_tax_sign': 1})
+            vals.update({'base_sign': 1, 'tax_sign': 1,
+                         'ref_base_sign': -1, 'ref_tax_sign': -1})
+        elif (vals.get('type_tax_use', False) or \
+              tax.type_tax_use) == 'purchase':
+            vals.update({'base_sign': -1, 'tax_sign': -1,
+                         'ref_base_sign': 1, 'ref_tax_sign': 1})
         if tax.base_code_id or tax.tax_code_id:
             return super(account_tax, self).write(vals)
         if not tax.base_code_id:
-            if not vals.get('account_base_tax_code_id', False) and not tax.account_base_tax_code_id:
+            if 'account_base_tax_code_id' not in vals and \
+                    not tax.account_base_tax_code_id:
                 raise Warning(_("Base Tax Code parent must be set."))
             elif not vals.get('base_code_id', False):
-                parent_base_tax_code = tax.account_base_tax_code_id or tax_code_obj.browse(vals['account_base_tax_code_id'])
+                parent_base_tax_code = tax.account_base_tax_code_id or \
+                    tax_code_obj.browse(vals['account_base_tax_code_id'])
                 base_tax_code_vals = {
                     'name': tax.name or vals.get('name') + ' (imp)',
-                    'code': parent_base_tax_code.code + tax.description or vals.get('description'),
-                    'parent_id': tax.account_base_tax_code_id.id or vals.get('account_base_tax_code_id'),
+                    'code': parent_base_tax_code.code + tax.description or \
+                    vals.get('description'),
+                    'parent_id': tax.account_base_tax_code_id.id or \
+                    vals.get('account_base_tax_code_id'),
                     'is_base': True,
-                    'vat_statement_type': (tax.type_tax_use or vals.get('type_tax_use')) == 'sale' and 'debit' or (tax.type_tax_use or vals.get('type_tax_use')) == 'purchase' and 'credit',
-                    'vat_statement_sign': (tax.type_tax_use or vals.get('type_tax_use')) == 'sale' and 1 or (tax.type_tax_use or vals.get('type_tax_use')) == 'purchase' and -1,
+                    'vat_statement_type': (
+                        tax.type_tax_use or \
+                        vals.get('type_tax_use')) == 'sale' and 'debit' or (
+                            tax.type_tax_use or vals.get(
+                                'type_tax_use')) == 'purchase' and 'credit',
+                    'vat_statement_sign': (
+                        tax.type_tax_use or \
+                        vals.get('type_tax_use')) == 'sale' and 1 or (
+                            tax.type_tax_use or vals.get(
+                                'type_tax_use')) == 'purchase' and -1,
                 }
                 base_code = tax_code_obj.create(base_tax_code_vals)
                 vals.update({'base_code_id': base_code.id})
 
         if not tax.tax_code_id:
-            if not vals.get('account_tax_code_id', False) and not tax.account_tax_code_id:
+            if not vals.get('account_tax_code_id', False) and \
+                    not tax.account_tax_code_id:
                 raise Warning(_("Tax Code parent must be set."))
             elif not vals.get('tax_code_id', False):
-                parent_tax_code = tax.account_tax_code_id or tax_code_obj.browse(vals['account_tax_code_id'])
+                parent_tax_code = tax.account_tax_code_id or \
+                    tax_code_obj.browse(vals['account_tax_code_id'])
                 tax_code_vals = {
                     'name': tax.name or vals.get('name'),
-                    'code': parent_tax_code.code + tax.description or vals.get('description'),
-                    'parent_id': tax.account_tax_code_id.id or vals.get('account_tax_code_id'),
+                    'code': parent_tax_code.code + tax.description or \
+                    vals.get('description'),
+                    'parent_id': tax.account_tax_code_id.id or \
+                    vals.get('account_tax_code_id'),
                     'is_base': False,
-                    'vat_statement_type': (tax.type_tax_use or vals.get('type_tax_use')) == 'sale' and 'debit' or (tax.type_tax_use or vals.get('type_tax_use')) == 'purchase' and 'credit',
-                    'vat_statement_sign': (tax.type_tax_use or vals.get('type_tax_use')) == 'sale' and 1 or (tax.type_tax_use or vals.get('type_tax_use')) == 'purchase' and -1,
+                    'vat_statement_type': (
+                        tax.type_tax_use or vals.get(
+                            'type_tax_use')) == 'sale' and 'debit' or (
+                                tax.type_tax_use or vals.get(
+                                    'type_tax_use')) == 'purchase' and \
+                    'credit',
+                    'vat_statement_sign': (
+                        tax.type_tax_use or vals.get(
+                            'type_tax_use')) == 'sale' and 1 or (
+                                tax.type_tax_use or vals.get(
+                                    'type_tax_use')) == 'purchase' and -1,
                 }
                 tax_code = tax_code_obj.create(tax_code_vals)
                 vals.update({'tax_code_id': tax_code.id})
@@ -154,11 +195,14 @@ class account_tax(models.Model):
     def onchange_tax_sign(self, type_tax_use):
         if type_tax_use:
             if type_tax_use == "sale":
-                return {'value': {'base_sign': 1, 'tax_sign': 1, 'ref_base_sign': -1, 'ref_tax_sign': -1}}
+                return {'value': {'base_sign': 1, 'tax_sign': 1,
+                                  'ref_base_sign': -1, 'ref_tax_sign': -1}}
             elif type_tax_use == "purchase":
-                return {'value': {'base_sign': -1, 'tax_sign': -1, 'ref_base_sign': 1, 'ref_tax_sign': 1}}
+                return {'value': {'base_sign': -1, 'tax_sign': -1,
+                                  'ref_base_sign': 1, 'ref_tax_sign': 1}}
             elif type_tax_use == "all":
-                return {'value': {'base_sign': 1, 'tax_sign': 1, 'ref_base_sign': 1, 'ref_tax_sign': 1}}
+                return {'value': {'base_sign': 1, 'tax_sign': 1,
+                                  'ref_base_sign': 1, 'ref_tax_sign': 1}}
 
     account_tax_code_id = fields.Many2one(
         'account.tax.code', string='Tax Code Parent',
@@ -168,7 +212,9 @@ class account_tax(models.Model):
         required=False, help='Parent base tax code')
     account_collected_id = fields.Many2one(
         'account.account', string='Invoice Tax Account',
-        related='account_tax_code_id.vat_statement_account_id', copy=False, readonly=True)
+        related='account_tax_code_id.vat_statement_account_id',
+        copy=False, readonly=True)
     account_paid_id = fields.Many2one(
         'account.account', string='Refund Tax Account',
-        related='account_tax_code_id.vat_statement_account_id', copy=False, readonly=True)
+        related='account_tax_code_id.vat_statement_account_id',
+        copy=False, readonly=True)
