@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2001-2014 Micronaet SRL (<http://www.micronaet.it>).
-#    Copyright (C) 2014 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
-#    Copyright (C) 2014 Didotech SRL
-#    (<http://www.didotech.com>)
-#    Copyright (C) 2015 SimplERP Srl
+#    Copyright (C) 2015 Sergio Corato - SimplERP srl
+#    Copyright (C) 2014 Didotech srl
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -16,7 +12,7 @@
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
+#    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
@@ -24,26 +20,28 @@
 ##############################################################################
 
 {
-    "name": "Payment terms - Commercial month",
-    "version": "4.0.0.1",
-    "author": "SimplERP Srl",
-    "website": "http://www.simplerp.it",
-    "category": "Account / Payments",
-    "description": """
+    'name': 'Simplified tax view and creation',
+    'version': '4.1.0.0',
+    'category': 'Localisation/Italy',
+    'description': """This module customizes OpenERP in order to fit italian laws and mores - Account version
 
-    """,
+Functionalities:
+
+- Simplify creation of tax
+
+""",
+    'author': 'Sergio Corato',
+    'website': 'http://www.simplerp.it',
+    'license': 'AGPL-3',
     "depends": [
-        "account",
-        "account_payment_line",
+        'account',
+        'base_vat',
+        'l10n_configurable',
+    ],
+    "data": [
+        'data/account_tax_view.xml',
     ],
     "demo": [],
-    "data": [
-        "views/payment_view.xml",
-    ],
-    "test": [
-        "test/invoice_emission.yml",
-    ],
     "active": False,
-    "installable": True,
+    "installable": True
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

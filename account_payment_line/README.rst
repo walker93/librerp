@@ -1,19 +1,18 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
 
 
-Partner subaccount
+Payment term for line
 ====================================
 
-Create one account for every res.partner 
+This module add term payment type for line of account move line, adding the 
+chance to put different type of payment in the same invoice
 
 
 Contributors
 ------------
 
 * Sergio Corato <sergio.corato@gmail.com>
-==============
 * SimplERP srl
-==============
 
 Maintainer
 ----------

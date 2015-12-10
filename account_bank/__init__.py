@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2015 SimplERP srl (<http://www.simplerp.it>).
-#    Copyright (c) 2013-2014 Didotech SRL (info at didotech.com)
+#    OpenERP, Open Source Management Solution
+#    Copyright (C) 2014 Didotech SRL (<http://www.didotech.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,27 +18,4 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-{
-    'name': 'Create account for partner',
-    'version': '8.1.0.2.2',
-    'category': 'Generic Modules',
-    'website': 'https://www.simplerp.it',
-    "author": "Didotech SRL, Sergio Corato - SimplERP Srl",
-    'depends': [
-        'base',
-        'account',
-    ],
-    'data': [
-        'security/ir.model.access.csv',
-        'data/ref_sequences.xml',
-        'views/partner_subaccount_view.xml',
-        'views/company_view.xml',
-        'views/partner_view.xml',
-    ],
-    'test': [
-        'test/partner_create_modify.yml',
-    ],
-    'installable': True,
-    'active': False,
-}
+from . import models

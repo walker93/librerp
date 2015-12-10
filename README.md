@@ -8,10 +8,8 @@ LIBRERP.IT
 
 Versione customizzata per l'Italia di Odoo.
 
-Prova la demo (utente admin, password admin):
-- per uso generico v. 8.0 (https://odoo8demo.simplerp.it/)
-- per punto cassa v. 8.0 (https://odoo8pos.simplerp.it/)
-- per punto cassa v. saas-6 (https://odoosaas6pos.simplerp.it/)
+Prova la demo (utente demo, password demo):
+- per uso generico (https://demo8.simplerp.it/)
 
 
 La piattaforma [Travis-ci.org](https://travis-ci.org) processa i test di utilizzo definiti nei file [.yml](https://en.wikipedia.org/wiki/YAML), che danno il "semaforo verde" alla possibilità di installare il sistema senza errori. Questi dati di test non vengono usati in produzione.

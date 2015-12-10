@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2001-2014 Micronaet SRL (<http://www.micronaet.it>).
-#    Copyright (C) 2014 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
-#    Copyright (C) 2014 Didotech SRL
-#    (<http://www.didotech.com>)
-#    Copyright (C) 2015 SimplERP Srl
+#    Copyright (C) 2014 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>)
+#    Copyright (C) 2014 Didotech srl
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -23,27 +20,4 @@
 #
 ##############################################################################
 
-{
-    "name": "Payment terms - Commercial month",
-    "version": "4.0.0.1",
-    "author": "SimplERP Srl",
-    "website": "http://www.simplerp.it",
-    "category": "Account / Payments",
-    "description": """
-
-    """,
-    "depends": [
-        "account",
-        "account_payment_line",
-    ],
-    "demo": [],
-    "data": [
-        "views/payment_view.xml",
-    ],
-    "test": [
-        "test/invoice_emission.yml",
-    ],
-    "active": False,
-    "installable": True,
-}
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+from . import models

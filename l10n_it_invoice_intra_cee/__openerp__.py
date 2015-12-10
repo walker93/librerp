@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2001-2014 Micronaet SRL (<http://www.micronaet.it>).
-#    Copyright (C) 2014 Agile Business Group sagl
-#    (<http://www.agilebg.com>)
-#    Copyright (C) 2014 Didotech SRL
-#    (<http://www.didotech.com>)
-#    Copyright (C) 2015 SimplERP Srl
+#    Copyright (C) 2014 Associazione OpenERP Italia
+#    (<http://www.openerp-italia.org>)
+#    Copyright (C) 2014 Didotech srl
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published
@@ -24,26 +21,29 @@
 ##############################################################################
 
 {
-    "name": "Payment terms - Commercial month",
-    "version": "4.0.0.1",
-    "author": "SimplERP Srl",
-    "website": "http://www.simplerp.it",
-    "category": "Account / Payments",
-    "description": """
-
-    """,
+    'name': "Invoice Intra CEE",
+    'version': '3.2.9.3',
+    'category': 'Account',
+    'description': """Manage Invoice for Intra CEE supplier""",
+    'author': 'CoOpenERP <info@coopenerp.it>, Didotech srl <info@didotech.com>, SimplERP srl ',
+    'website': 'http://www.simplerp.it',
+    'license': 'AGPL-3',
     "depends": [
-        "account",
-        "account_payment_line",
+        'base',
+        'account',
+        'account_voucher',
+#         'account_invoice_entry_date',
+#         'account_payment_term_month',
+        #'l10n_it_account',
+    ],
+    "data": [
+        'views/account_view.xml',
+        'views/account_data.xml',
     ],
     "demo": [],
-    "data": [
-        "views/payment_view.xml",
-    ],
     "test": [
-        "test/invoice_emission.yml",
+        'test/invoice_reverse_charge.yml',
     ],
     "active": False,
     "installable": True,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

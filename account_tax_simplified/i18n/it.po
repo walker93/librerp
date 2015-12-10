@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* account_tax_simplified
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-08 16:15+0000\n"
+"PO-Revision-Date: 2015-12-08 16:15+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_tax_simplified
+#: field:account.tax,account_base_tax_code_id:0
+msgid "Base Tax Code Parent"
+msgstr "Base Tax Code Parent"
+
+#. module: account_tax_simplified
+#: code:addons/account_tax_simplified/model/account_tax.py:121
+#, python-format
+msgid "Base Tax Code parent must be set."
+msgstr "Codice IVA imponibile deve essere impostato."
+
+#. module: account_tax_simplified
+#: view:account.tax:account_tax_simplified.view_tax_form_type
+msgid "Parent Base Tax Code..."
+msgstr "Codice IVA imponibile Padre..."
+
+#. module: account_tax_simplified
+#: view:account.tax:account_tax_simplified.view_tax_form_type
+msgid "Parent Tax Code..."
+msgstr "Codice IVA Padre..."
+
+#. module: account_tax_simplified
+#: help:account.tax,account_base_tax_code_id:0
+msgid "Parent base tax code"
+msgstr "Codice IVA imponibile padre"
+
+#. module: account_tax_simplified
+#: help:account.tax,account_tax_code_id:0
+msgid "Parent tax code"
+msgstr "Codice IVA padre"
+
+#. module: account_tax_simplified
+#: model:ir.model,name:account_tax_simplified.model_account_tax
+msgid "Tax"
+msgstr "IVA"
+
+#. module: account_tax_simplified
+#: field:account.tax,account_tax_code_id:0
+msgid "Tax Code Parent"
+msgstr "Codice IVA padre"
+
+#. module: account_tax_simplified
+#: code:addons/account_tax_simplified/model/account_tax.py:137
+#, python-format
+msgid "Tax Code parent must be set."
+msgstr "Codice IVA padre deve essere impostato."
+
+#. module: account_tax_simplified
+#: code:addons/account_tax_simplified/model/account_tax.py:112
+#, python-format
+msgid "Tax Type cannot be changed - create a different tax."
+msgstr "Il tipo del codice IVA non può essere cambiato - creare un'altro codice."
+
+#. module: account_tax_simplified
+#: code:addons/account_tax_simplified/model/account_tax.py:32
+#, python-format
+msgid "Tax can't be duplicated"
+msgstr "Il codice IVA non può essere duplicato"
+
+#. module: account_tax_simplified
+#: code:addons/account_tax_simplified/model/account_tax.py:43
+#: code:addons/account_tax_simplified/model/account_tax.py:109
+#, python-format
+msgid "Tax description must be unique."
+msgstr "La descrizione IVA deve essere unica."
+
+#. module: account_tax_simplified
+#: code:addons/account_tax_simplified/model/account_tax.py:40
+#: code:addons/account_tax_simplified/model/account_tax.py:106
+#, python-format
+msgid "Tax name must be unique."
+msgstr "Il nome del codice IVA deve essere unico."
+
+#. module: account_tax_simplified
+#: view:account.tax:account_tax_simplified.view_tax_form_type
+msgid "True"
+msgstr "Vero"
+
