@@ -22,67 +22,112 @@
 ##############################################################################
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from openerp.osv import fields, orm
+from openerp import fields, models, api, _
+
+PAYMENT_TERM_TYPE_SELECTION = [
+    ('BB', 'Bonifico Bancario'),
+    ('BP', 'Bonifico Postale'),
+    ('RD', 'Rimessa Diretta'),
+    ('RB', 'Ricevuta Bancaria'),
+    ('F4', 'F24'),
+    ('PP', 'Paypal'),
+    ('CC', 'Carta di Credito'),
+    ('CO', 'Contrassegno'),
+    ('CN', 'Contanti'),
+    ('SD', 'Sepa DD'),
+]
 
 
-class account_payment_term_line(orm.Model):
+class account_payment_term_line(models.Model):
     ''' Add extra field for manage commercial payments
     '''
     _name = "account.payment.term.line"
     _inherit = "account.payment.term.line"
 
-    _columns = {
-        'sequence': fields.integer('Sequence', required=True, help="""The
- sequence field is used to order the payment term lines from the lowest
- sequences to the higher ones"""),
-        'months': fields.integer(
-            'Number of month', required=False,
-            help="Number of month to add before computation of the day of "
-                 "month. If Date=15-01, Number of month=1, Day of Month=-1, "
-                 "then the due date is 28-02. If compiled, there is no "
-                 "need to compile the field Days."),
-        'value': fields.selection([
-            ('procent', 'Percent'),
-            ('balance', 'Balance'),
-            ('fixed', 'Fixed Amount'),
-            ('tax', 'Tax Amount'),
-        ], 'Valuation',
-            required=True, help="""Select here the kind of valuation
-             related to this payment term line.
-            Note that you should have your last line with the type 'Balance' to
-             ensure that the whole amount will be threated."""),
-    }
+    type = fields.Selection(PAYMENT_TERM_TYPE_SELECTION,
+                            "Type of payment")
+    sequence = fields.Integer(
+        'Sequence', required=True, help="""The
+        sequence field is used to order the payment term lines from the lowest
+        sequences to the higher ones""")
+    months = fields.Integer(
+        'Number of month', required=False, default=0,
+        help="Number of month to add before computation of the day of "
+        "month. If Date=15-01, Number of month=1, Day of Month=-1, "
+        "then the due date is 28-02. If compiled, there is no "
+        "need to compile the field Days."),
+    value = fields.Selection([
+        ('procent', 'Percent'),
+        ('balance', 'Balance'),
+        ('fixed', 'Fixed Amount'),
+        ('tax', 'Tax Amount'),
+    ], 'Valuation',
+        required=True, help="""Select here the kind of valuation
+        related to this payment term line.
+        Note that you should have your last line with the type 'Balance' to
+        ensure that the whole amount will be threated.""")
+
     _defaults = {
         'days': 0,
-        'months': 0,
     }
     _order = "sequence"
 
 
-class account_payment_term(orm.Model):
+class account_move_line(models.Model):
+    _inherit = 'account.move.line'
+
+    payment_term_type = fields.Selection(
+        PAYMENT_TERM_TYPE_SELECTION, 'Payment line term type')
+
+
+class account_invoice(models.Model):
+    _inherit = 'account.invoice'
+
+    @api.multi
+    def finalize_invoice_move_lines(self, move_lines):
+        super(account_invoice, self).finalize_invoice_move_lines(move_lines)
+        totlines = False
+        amount = 0
+        for line in move_lines:
+            if line[2].get('date_maturity', False):
+                amount += (line[2]['credit'] > 0 and line[2]['credit'] or
+                           line[2]['debit'])
+        if self.payment_term:
+            totlines = self.payment_term.compute(
+                amount, self.date_invoice or False)[0]
+        for line in move_lines:
+            if totlines:
+                for pay_line in totlines:
+                    if line[2].get('date_maturity', False) == pay_line[0] and \
+                            (line[2]['credit'] == pay_line[1] or
+                             line[2]['debit'] == pay_line[1]):
+                        line[2].update({'payment_term_type': pay_line[2]})
+                        totlines.remove(pay_line)
+        return move_lines
+
+
+class account_payment_term(models.Model):
     ''' Overwrite compute method, add month check and 2 months which payment
     can be delayed to the next month.'''
     _name = "account.payment.term"
     _inherit = "account.payment.term"
 
-    _columns = {
-        'month_to_be_delayed1': fields.integer(
-            'First month without payments', required=False,
-            help="First month with no payments allowed."),
-        'days_to_be_delayed1': fields.integer(
-            'Days of delay for first month', required=False, help="""Number of
-             days of delay for first month without payments."""),
-        'min_day_to_be_delayed1': fields.integer(
-            'First date from which payment will be delayed.'),
-        'month_to_be_delayed2': fields.integer(
-            'Second month without payments', required=False,
-            help="Second month with no payments allowed."),
-        'days_to_be_delayed2': fields.integer(
-            'Days of delay for second month', required=False, help="""Number of
-             days of delay for second month without payments."""),
-        'min_day_to_be_delayed2': fields.integer(
-            'Second date from which payment will be delayed.'),
-    }
+    month_to_be_delayed1 = fields.Integer(
+        'First month without payments', required=False,
+        help="First month with no payments allowed.")
+    days_to_be_delayed1 = fields.Integer(
+        'Days of delay for first month', required=False, help="""Number of
+         days of delay for first month without payments.""")
+    min_day_to_be_delayed1 = fields.Integer(
+        'First date from which payment will be delayed.')
+    month_to_be_delayed2 = fields.Integer(
+        'Second month without payments', required=False,
+        help="Second month with no payments allowed.")
+    days_to_be_delayed2 = fields.Integer(
+        'Days of delay for second month', required=False, help="""Number of
+         days of delay for second month without payments.""")
+    min_day_to_be_delayed2 = fields.Integer(
+        'Second date from which payment will be delayed.')
 
     def compute(self, cr, uid, id, value, date_ref=False, context=None):
         '''Function overwritten for check also month values and 2 months with

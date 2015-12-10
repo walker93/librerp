@@ -25,7 +25,7 @@
 
 {
     "name": "Payment terms - Commercial month",
-    "version": "4.0.0.1",
+    "version": "8.0.0.0.1",
     "author": "SimplERP Srl",
     "website": "http://www.simplerp.it",
     "category": "Account / Payments",

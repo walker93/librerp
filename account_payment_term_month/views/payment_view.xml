@@ -10,6 +10,9 @@
                 <field name="days" position="after">
                     <field name="months"/>
                 </field>
+                <field name="value_amount" position="after">
+                    <field name="type"/>   
+                </field>
             </field>
         </record>
 
@@ -24,6 +27,9 @@
                    <xpath expr="/form/group/group/field[@name='days']" position="attributes">
                        <attribute name="attrs">{'required':[('months','=',False)]}</attribute>
                    </xpath>
+                   <field name="value_amount" position="after">
+                       <field name="type"/>   
+                   </field>
             </field>
         </record>
 
