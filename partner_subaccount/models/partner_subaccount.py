@@ -152,7 +152,8 @@ class res_partner(models.Model):
                 self.get_create_customer_partner_account(vals)
 
         # 2 se marcato come fornitore - inserire se non esiste
-        if vals.get('supplier', False) and not vals.get('customer', False):
+        if ('supplier' in vals or 'search_default_supplier' in self._context) \
+                and 'customer' not in vals:
             vals['block_ref_supplier'] = True
             if not vals.get('property_supplier_ref', False):
                 vals['property_supplier_ref'] = self.pool['ir.sequence'].get(
@@ -164,7 +165,10 @@ class res_partner(models.Model):
                 self.get_create_supplier_partner_account(vals)
 
         # 3 se marcato come cliente e fornitore - inserire se non esiste
-        if vals.get('customer', False) and vals.get('supplier', False):
+        if ('customer' in vals or 'search_default_customer' in self._context) \
+                and (
+                    'supplier' in vals or
+                    'search_default_supplier' in self._context):
             vals['block_ref_customer'] = True
             if not vals.get('property_customer_ref', False):
                 vals['property_customer_ref'] = self.pool['ir.sequence'].get(
