@@ -32,6 +32,7 @@
     "data": [
         'security/security.xml',
         'views/account_invoice_view.xml',
+        'views/partner_view.xml',
     ],
     "installable": True
 }
