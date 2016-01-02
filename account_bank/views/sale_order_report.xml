@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_saleorder_document_bank" inherit_id="sale.report_saleorder_document">
+    <xpath expr="//t/div[@class='page']/p[@t-field='o.note']" position="after">
+            <p t-if="o.partner_id.company_bank_id">
+                <strong>Bank:</strong>
+                <span t-field="o.partner_id.company_bank_id.bank_name"/>
+                <span t-field="o.partner_id.company_bank_id.acc_number"/>
+            </p>
+    </xpath>
+</template>
+</data>
+</openerp>
