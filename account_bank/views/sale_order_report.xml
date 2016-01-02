@@ -9,6 +9,9 @@
                 <span t-field="o.partner_id.company_bank_id.acc_number"/>
             </p>
     </xpath>
+    <xpath expr="//t/div[@class='page']/div[@id='informations']/div[@t-if='o.date_order']/p[@t-field='o.date_order']" position="replace">
+        <p t-field="o.date_order" t-field-options='{"format": "d MMMM y"}'/>
+    </xpath>
 </template>
 </data>
 </openerp>
