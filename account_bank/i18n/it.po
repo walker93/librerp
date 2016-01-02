@@ -56,3 +56,8 @@ msgstr "Fattura"
 msgid "Partner"
 msgstr "Partner"
 
+#. module: account_bank
+#: view:website:sale.report_saleorder_document
+msgid "Bank:"
+msgstr "Appoggio bancario:"
+
