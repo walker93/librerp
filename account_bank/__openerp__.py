@@ -28,6 +28,7 @@
     'license': 'AGPL-3',
     "depends": [
         'account',
+        'sale',
     ],
     "data": [
         'security/security.xml',
