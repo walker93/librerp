@@ -38,7 +38,7 @@
         <record id="view_partner_inherit_view_subaccount" model="ir.ui.view">
 			<field name="name">view.partner.form.inherit.subaccount</field>
 			<field name="model">res.partner</field>
-            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
 			<field name="arch" type="xml">
 				<data>
                     <xpath expr="//form/sheet/notebook/page[@name='sales_purchases']/group/group/field[@name='customer']" position="after">
