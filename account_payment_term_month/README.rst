@@ -22,15 +22,15 @@ Contributors
 Maintainer
 ----------
 
-.. image:: http://simplerp.it/images/Logo.png
+.. image:: http://librerp.it/Logo.png
 
-SimplERP Srl
+Librerp.it
 =======================
 
-http://simplerp.it
+http://librerp.it
 
-This module is maintained by SimplERP Srl.
+This module is maintained by Librerp.
 
-SimplERP is the professional edition of LibrERP.it project, which promotes a customized Odoo with additional features for Italian usage.
+LibrERP promotes a customized Odoo with additional features for Italian usage.
 
 To contribute to this module, please visit http://librerp.it.

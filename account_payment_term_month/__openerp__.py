@@ -25,24 +25,18 @@
 
 {
     "name": "Payment terms - Commercial month",
-    "version": "8.0.0.0.1",
-    "author": "SimplERP Srl",
-    "website": "http://www.simplerp.it",
+    "version": "8.0.0.0.2",
+    "author": "Sergio Corato",
+    "website": "http://www.librerp.it",
     "category": "Account / Payments",
-    "description": """
-
-    """,
     "depends": [
         "account",
     ],
-    "demo": [],
     "data": [
         "views/payment_view.xml",
     ],
     "test": [
         "test/invoice_emission.yml",
     ],
-    "active": False,
     "installable": True,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
