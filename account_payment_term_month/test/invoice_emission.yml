@@ -18,7 +18,7 @@
 -
   !record {model: account.invoice, id: account_invoice_supplier0}:
     check_total: 3000.0
-    date_invoice: !eval "'%s-01-30' %(datetime.now().year)"
+    date_invoice: !eval "'%s-01-31' %(datetime.now().year)"
     invoice_line:
       - price_unit: 300.0
         product_id: product.product_product_3
