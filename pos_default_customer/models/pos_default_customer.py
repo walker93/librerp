@@ -36,6 +36,6 @@ class PosOrder(osv.osv):
             if not order['data'].get('partner_id', False):
                 order['data']['partner_id'] = self.pool['pos.session'].browse(
                     cr, uid, [order['data']['pos_session_id']]).\
-                        config_id.partner_id.id
+                    config_id.partner_id.id
         return super(PosOrder, self).create_from_ui(
             cr, uid, orders, context=context)
