@@ -67,10 +67,10 @@
 -
   !workflow {model: account.invoice, action: invoice_open, ref: account_invoice_supplier1}
 - 
-  I check that payment expiration is correct at year-02-28
+  I check that payment expiration is correct at year-02-29
 -
   !assert {model: account.invoice, id: account_invoice_supplier1}:
-    - date_due == '%s-02-28' %(datetime.now().year)
+    - date_due == '%s-02-29' %(datetime.now().year)
 -
   I create another supplier invoice with date on the 1st of a 31 days month
 -
