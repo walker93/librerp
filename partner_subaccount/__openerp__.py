@@ -21,7 +21,7 @@
 
 {
     'name': 'Create account for partner',
-    'version': '8.1.0.4.2',
+    'version': '8.1.0.5.2',
     'category': 'Generic Modules',
     'website': 'https://www.simplerp.it',
     "author": "Didotech SRL, Sergio Corato - SimplERP Srl",
@@ -40,5 +40,4 @@
         'test/partner_create_modify.yml',
     ],
     'installable': True,
-    'active': False,
 }

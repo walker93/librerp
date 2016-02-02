@@ -1,13 +1,13 @@
-# Translation of OpenERP Server.
+# Translation of Odoo Server.
 # This file contains the translation of the following modules:
 #	* partner_subaccount
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: OpenERP Server 6.1\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-11 14:52+0000\n"
-"PO-Revision-Date: 2013-06-11 14:52+0000\n"
+"POT-Creation-Date: 2016-02-02 20:31+0000\n"
+"PO-Revision-Date: 2016-02-02 20:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -23,24 +23,46 @@ msgstr "Block Reference"
 
 #. module: partner_subaccount
 #: sql_constraint:res.partner:0
-msgid "Codice Fornitore Univoco"
-msgstr "Codice Fornitore Univoco"
-
-#. module: partner_subaccount
-#: sql_constraint:res.partner:0
-msgid "Error! Specified VAT Number already exists for any other registered partner."
-msgstr "Errore! Esiste già un partner con la stessa P.IVA."
-
-#. module: partner_subaccount
-#: sql_constraint:res.partner:0
 msgid "Codice Cliente Univoco"
 msgstr "Codice Cliente Univoco"
 
 #. module: partner_subaccount
-#: code:addons/partner_subaccount/partner_subaccount.py:280
+#: sql_constraint:res.partner:0
+msgid "Codice Fornitore Univoco"
+msgstr "Codice Fornitore Univoco"
+
+#. module: partner_subaccount
+#: model:ir.model,name:partner_subaccount.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: partner_subaccount
+#: field:res.partner,property_customer_ref:0
+msgid "Customer Ref."
+msgstr "Customer Ref."
+
+#. module: partner_subaccount
+#: code:addons/partner_subaccount/models/partner_subaccount.py:314
 #, python-format
 msgid "Duplication of a partner is not allowed"
-msgstr "Duplicazione del partner non è permessa"
+msgstr "La duplicazione del partner non è permessa"
+
+#. module: partner_subaccount
+#: field:res.company,enable_partner_subaccount:0
+msgid "Enable Partner Subaccount"
+msgstr "Abilita i sottoconti per ogni cliente"
+
+#. module: partner_subaccount
+#: code:addons/partner_subaccount/models/partner_subaccount.py:74
+#, python-format
+msgid "Parent Account Type is not of type 'view'"
+msgstr "Parent Account Type is not of type 'view'"
+
+#. module: partner_subaccount
+#: field:res.partner,selection_account_payable:0
+#: field:res.partner,selection_account_receivable:0
+msgid "Parent account"
+msgstr "Parent account"
 
 #. module: partner_subaccount
 #: model:ir.model,name:partner_subaccount.model_res_partner
@@ -48,6 +70,22 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: partner_subaccount
-#: field:res.company,enable_partner_subaccount:0
-msgid "Enable Partner Subaccount"
-msgstr "Abilita i sottoconti per ogni cliente"
+#: view:account.config.settings:partner_subaccount.view_account_config_settings_subaccount
+msgid "Partner Subaccount"
+msgstr "Partner Subaccount"
+
+#. module: partner_subaccount
+#: field:res.partner,property_supplier_ref:0
+msgid "Supplier Ref."
+msgstr "Supplier Ref."
+
+#. module: partner_subaccount
+#: help:res.partner,property_customer_ref:0
+msgid "The reference attributed by the partner to the current company         as a customer of theirs."
+msgstr "The reference attributed by the partner to the current company         as a customer of theirs."
+
+#. module: partner_subaccount
+#: help:res.partner,property_supplier_ref:0
+msgid "The reference attributed by the partner to the current company         as a supplier of theirs."
+msgstr "The reference attributed by the partner to the current company         as a supplier of theirs."
+

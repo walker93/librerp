@@ -21,7 +21,7 @@
 
 from openerp import models, fields, api, _
 from openerp import SUPERUSER_ID
-
+from openerp.exceptions import Warning
 
 class res_partner(models.Model):
     _inherit = 'res.partner'
@@ -71,8 +71,7 @@ class res_partner(models.Model):
                         res = property_chart_id
                         break
         if not res:
-            raise Warning(
-                'Warning!', "Parent Account Type is not of type 'view'")
+            raise Warning(_("Parent Account Type is not of type 'view'"))
 
         return res
 
@@ -312,5 +311,4 @@ class res_partner(models.Model):
             cr, uid, ids, vals, context=context)
 
     def copy(self, cr, uid, partner_id, defaults, context=None):
-        raise Warning('Warning', _(
-            'Duplication of a partner is not allowed'))
+        raise Warning(_('Duplication of a partner is not allowed'))
