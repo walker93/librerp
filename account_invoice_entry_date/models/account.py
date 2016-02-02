@@ -92,9 +92,10 @@ class AccountInvoice(models.Model):
                 cr, uid, [inv.move_id.id], {'state': 'draft'})
 
             sql = "update account_move_line set period_id=" + str(
-                period_id) + ", date = '" + mov_date + "', ref = '" + \
-                (inv.supplier_invoice_number and inv.supplier_invoice_number or '') + \
-                "' where move_id = " + str(inv.move_id.id)
+                period_id) + ", date = '" + mov_date + "', ref = '" + (
+                inv.supplier_invoice_number and
+                inv.supplier_invoice_number or ''
+                ) + "' where move_id = " + str(inv.move_id.id)
 
             cr.execute(sql)
 

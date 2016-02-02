@@ -23,6 +23,7 @@ from openerp import models, fields, api, _
 from openerp import SUPERUSER_ID
 from openerp.exceptions import Warning
 
+
 class res_partner(models.Model):
     _inherit = 'res.partner'
 

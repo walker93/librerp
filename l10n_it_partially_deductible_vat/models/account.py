@@ -249,8 +249,8 @@ class AccountInvoiceTax(models.Model):
                                     round=False)
                             else:
                                 inv_tax['tax_amount'] = cur.with_context(
-                                    date=invoice.date_invoice
-                                    or fields.Date.context_today(invoice)).\
+                                    date=invoice.date_invoice or
+                                    fields.Date.context_today(invoice)).\
                                     compute(inv_tax['amount'] *
                                             main_tax['ref_tax_sign'],
                                             company_currency,

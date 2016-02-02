@@ -183,8 +183,8 @@ class account_payment_term(models.Model):
                     result.append((
                         next_date.strftime('%Y-%m-%d'), amt, line.type))
                 else:
-                    next_date = (datetime.strptime(date_ref, '%Y-%m-%d')
-                                 + relativedelta(days=line.days))
+                    next_date = (datetime.strptime(date_ref, '%Y-%m-%d') +
+                                 relativedelta(days=line.days))
                     if line.days2 < 0:
                         next_first_date = next_date + relativedelta(
                             day=1, months=1)  # Getting 1st of next month
