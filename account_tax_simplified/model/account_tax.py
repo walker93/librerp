@@ -50,7 +50,8 @@ class account_tax(models.Model):
         if vals.get('base_code_id', False) and vals.get('tax_code_id', False):
             return super(account_tax, self).create(vals)
 
-        if 'base_code_id' not in vals and 'account_base_tax_code_id' in vals:
+        if not vals.get('base_code_id', False) and \
+                vals.get('account_base_tax_code_id'):
             parent_base_tax_code = tax_code_obj.browse(
                 vals['account_base_tax_code_id'])
             base_tax_code_vals = {
@@ -132,7 +133,7 @@ class account_tax(models.Model):
         if tax.base_code_id or tax.tax_code_id:
             return super(account_tax, self).write(vals)
         if not tax.base_code_id:
-            if 'account_base_tax_code_id' not in vals and \
+            if not vals.get('account_base_tax_code_id', False) and \
                     not tax.account_base_tax_code_id:
                 raise Warning(_("Base Tax Code parent must be set."))
             elif not vals.get('base_code_id', False):

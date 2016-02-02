@@ -20,9 +20,10 @@
 #
 
 {
-    'name': 'Simplified tax view and creation',
-    'version': '8.0.1.0.0',
+    'name': 'Simply tax creation',
+    'version': '8.0.1.1.0',
     'category': 'Localisation/Italy',
+    'summary': 'Simplified tax view and creation',
     'author': 'Sergio Corato',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
