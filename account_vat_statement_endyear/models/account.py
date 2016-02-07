@@ -33,6 +33,15 @@ class AccountVatPeriodEndStatement(orm.Model):
             result[statement.id] = periods
         return result
 
+    def onchange_endyear_statement(
+            self, cr, uid, ids, endyear_statement, context=None):
+        if endyear_statement:
+            return {
+                'value': {
+                    'interest': False,
+                }
+            }
+
     _columns = {
         'endyear_statement': fields.boolean('End of year statement'),
         'endyear_statement_id': fields.many2one(
