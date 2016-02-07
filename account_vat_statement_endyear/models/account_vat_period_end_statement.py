@@ -222,7 +222,8 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
                 account_id = line.account_id.id
                 interest_account_id = self.pool['res.users'].browse(
                     self.cr, self.uid, self.uid, context
-                ).company_id.of_account_end_vat_statement_interest_account_id.id
+                ).company_id.of_account_end_vat_statement_interest_account_id.\
+                    id
                 if account_id not in interest_amounts and \
                         account_id == interest_account_id:
                     interest_amounts[account_id] = {
