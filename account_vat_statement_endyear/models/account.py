@@ -30,7 +30,7 @@ class AccountVatPeriodEndStatement(orm.Model):
             for statement_child in statement.statement_ids:
                 for period in statement_child.period_ids:
                     periods.append(period.id)
-        result[statement.id] = periods
+            result[statement.id] = periods
         return result
 
     _columns = {
@@ -39,11 +39,11 @@ class AccountVatPeriodEndStatement(orm.Model):
             'account.vat.period.end.statement',
             'End of year Statement parent'),
         'statement_ids': fields.one2many(
-                'account.vat.period.end.statement',
-                'endyear_statement_id', 'End of year Statement childs'),
+            'account.vat.period.end.statement',
+            'endyear_statement_id', 'End of year Statement childs'),
         'endyear_period_ids': fields.function(
-                _get_endyear_periods, relation='account.period',
-                type="many2many", string='End of year periods'),
+            _get_endyear_periods, relation='account.period',
+            type="many2many", string='End of year periods'),
     }
 
     def add_periods(self, cr, uid, ids, context=None):
@@ -54,7 +54,7 @@ class AccountVatPeriodEndStatement(orm.Model):
                     ('date_start', '<=', st_date),
                     ('date_stop', '>=', st_date)], limit=1)
             fiscalyear = self.pool.get('account.fiscalyear').browse(
-                    cr, uid, fiscalyears[0])
+                cr, uid, fiscalyears[0])
             period_obj = self.pool.get('account.period')
             periods = period_obj.search(
                 cr, uid, [

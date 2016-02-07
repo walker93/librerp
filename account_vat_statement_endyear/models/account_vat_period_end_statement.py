@@ -164,10 +164,10 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
             res = {}
             context['period_id'] = period_id
             for tax_code in code_pool.browse(
-                    self.cr, self.uid, tax_code_ids, context=context
+                self.cr, self.uid, tax_code_ids, context=context
             ):
                 res = self._build_codes_dict(
-                        tax_code, res=res, context=context)
+                    tax_code, res=res, context=context)
             for tax, value in res.iteritems():
                 if tax in result:
                     result[tax]['base'] += value['base']
