@@ -1,0 +1,12 @@
+table {font-size: xx-small;}
+table th {
+	font-size: xx-small;
+	page-break-inside: avoid;
+}
+table td {
+	font-size: xx-small;
+	page-break-inside: avoid;
+}
+tr {
+    page-break-inside: avoid;
+}

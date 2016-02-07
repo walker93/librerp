@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="view_account_vat_period_end_statement_simplerp" model="ir.ui.view">
+            <field name="name">account.vat.period.end.statement.form</field>
+            <field name="inherit_id" ref="account_vat_period_end_statement.view_account_vat_period_end_statement"/>
+            <field name="model">account.vat.period.end.statement</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group/field[@name='interest_percent']" position="after">
+                    <field name="endyear_statement"/>
+                </xpath>
+                <xpath expr="//form/notebook/page[@string='Periods']/button[@string='Add period']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', 'in', ('confirmed', 'paid'))], 'invisible': [('endyear_statement','=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//form/notebook/page[@string='Periods']/button[@string='Add period']" position="after">
+                    <button type='object' name="add_periods" string="Add periods" colspan="2" attrs="{'readonly': [('state', 'in', ('confirmed', 'paid'))], 'invisible': [('endyear_statement','!=',True)]}"/>
+                </xpath>
+                <xpath expr="//form/notebook/page[@string='Periods']/field[@name='period_ids']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('endyear_statement','=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//form/notebook/page[@string='Periods']/field[@name='period_ids']" position="after">
+                    <field name="endyear_period_ids" colspan="4" nolabel="1" readonly="1" attrs="{'invisible': [('endyear_statement','!=',True)]}"/>
+                </xpath>
+                <xpath expr="//form/button[@name='create_move']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('state','not in',['draft',]),('endyear_statement','=',True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
