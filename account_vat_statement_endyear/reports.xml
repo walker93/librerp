@@ -5,7 +5,7 @@
 		<report
             id="action_report_account_vat_period_end_statement_simplerp"
             model="account.vat.period.end.statement"
-            string="Print Vat Period End Statement Simplerp"
+            string="Print Vat Period End Statement"
             report_type="qweb-pdf"
             name="account_vat_statement_endyear.report_simplerp_vatperiodendstatement"
             file="account_vat_statement_endyear.report_simplerp_vatperiodendstatement"

@@ -18,7 +18,6 @@
 #
 #
 from openerp.osv import orm, fields
-from openerp.tools.translate import _
 
 
 class AccountVatPeriodEndStatement(orm.Model):
@@ -30,7 +29,7 @@ class AccountVatPeriodEndStatement(orm.Model):
         for statement in self.browse(cr, uid, ids, context=context):
             for statement_child in statement.statement_ids:
                 for period in statement_child.period_ids:
-                     periods.append(period.id)
+                    periods.append(period.id)
         result[statement.id] = periods
         return result
 
@@ -53,7 +52,7 @@ class AccountVatPeriodEndStatement(orm.Model):
             fiscalyears = self.pool.get('account.fiscalyear').search(
                 cr, uid, [
                     ('date_start', '<=', st_date),
-                    ('date_stop', '>=', st_date)], limit=1 )
+                    ('date_stop', '>=', st_date)], limit=1)
             fiscalyear = self.pool.get('account.fiscalyear').browse(
                     cr, uid, fiscalyears[0])
             period_obj = self.pool.get('account.period')
@@ -105,15 +104,15 @@ class AccountVatPeriodEndStatement(orm.Model):
                 debit_tax_code = tax_code_pool.browse(
                     cr, uid, debit_tax_code_id, context)
                 total = 0.0
-                #changed for total vat
+                # changed for total vat
                 periods = []
                 if statement.endyear_statement and statement.statement_ids:
                     for statement_child in statement.statement_ids:
                         periods += statement_child.period_ids
                 else:
-                     periods = statement.period_ids
+                    periods = statement.period_ids
                 for period in periods:
-                #for period in statement.period_ids:
+                    # for period in statement.period_ids:
                     ctx = context.copy()
                     ctx['period_id'] = period.id
                     total += tax_code_pool.browse(
@@ -132,15 +131,15 @@ class AccountVatPeriodEndStatement(orm.Model):
                 credit_tax_code = tax_code_pool.browse(
                     cr, uid, credit_tax_code_id, context)
                 total = 0.0
-                #changed for total vat
+                # changed for total vat
                 periods = []
                 if statement.endyear_statement and statement.statement_ids:
                     for statement_child in statement.statement_ids:
                         periods += statement_child.period_ids
                 else:
-                     periods = statement.period_ids
+                    periods = statement.period_ids
                 for period in periods:
-                #for period in statement.period_ids:
+                    # for period in statement.period_ids:
                     ctx = context.copy()
                     ctx['period_id'] = period.id
                     total += tax_code_pool.browse(

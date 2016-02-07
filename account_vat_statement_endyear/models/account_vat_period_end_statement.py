@@ -20,6 +20,7 @@
 import time
 from openerp.report import report_sxw
 from openerp.osv import orm
+from openerp.tools.translate import _
 
 
 class Report(orm.Model):
@@ -172,7 +173,8 @@ class VatPeriodEndStatementReportSimplerp(report_sxw.rml_parse):
                     result[tax]['base'] += value['base']
                     result[tax]['vat'] += value['vat']
                     result[tax]['vat_deductible'] += value['vat_deductible']
-                    result[tax]['vat_undeductible'] += value['vat_undeductible']
+                    result[tax]['vat_undeductible'] += value[
+                        'vat_undeductible']
                     result[tax]['code'] += value['code']
                     result[tax]['tax_code_name'] += value['tax_code_name']
                 else:
