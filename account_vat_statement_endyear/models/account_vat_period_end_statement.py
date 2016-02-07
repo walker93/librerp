@@ -46,6 +46,7 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
             'tax_codes_amounts': self._get_tax_codes_amounts,
             'account_vat_amounts': self._get_account_vat_amounts,
             'l10n_it_count_fiscal_page_base': self._get_fiscal_page_base,
+            'interest_amounts': self._get_interest_amounts,
         })
         self.context = context
 
@@ -211,6 +212,28 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
             else:
                 account_amounts[account_id]['amount'] += line.amount
         return account_amounts
+
+    def _get_interest_amounts(self, statement=None, context=None):
+        interest_amounts = {}
+        if context is None:
+            context = {}
+        for statement_child in statement.statement_ids:
+            for line in statement_child.generic_vat_account_line_ids:
+                account_id = line.account_id.id
+                interest_account_id = self.pool['res.users'].browse(
+                    self.cr, self.uid, self.uid, context
+                ).company_id.of_account_end_vat_statement_interest_account_id.id
+                if account_id not in interest_amounts and \
+                        account_id == interest_account_id:
+                    interest_amounts[account_id] = {
+                        'account_id': line.account_id.id,
+                        'account_name': line.account_id.name,
+                        'amount': line.amount
+                    }
+                elif account_id in interest_amounts and \
+                        account_id == interest_account_id:
+                    interest_amounts[account_id]['amount'] += line.amount
+        return interest_amounts
 
 
 class ReportVatPeriodEndStatement(orm.AbstractModel):

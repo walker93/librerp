@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-07 15:26+0000\n"
-"PO-Revision-Date: 2016-02-07 15:26+0000\n"
+"POT-Creation-Date: 2016-02-07 17:26+0000\n"
+"PO-Revision-Date: 2016-02-07 17:26+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -42,8 +42,8 @@ msgstr "Descrizione"
 
 #. module: account_vat_statement_endyear
 #: field:account.vat.period.end.statement,statement_ids:0
-msgid "Liquidazione di fine anno - figli"
-msgstr "End of year Statement childs"
+msgid "End of year Statement childs"
+msgstr "Liquidazione di fine anno - figli"
 
 #. module: account_vat_statement_endyear
 #: field:account.vat.period.end.statement,endyear_statement_id:0
@@ -61,9 +61,9 @@ msgid "End of year statement"
 msgstr "Liquidazione di fine anno"
 
 #. module: account_vat_statement_endyear
-#: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:129
-#: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:140
-#: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:200
+#: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:130
+#: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:141
+#: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:201
 #, python-format
 msgid "Error"
 msgstr "Errore"
@@ -74,13 +74,13 @@ msgid "ID"
 msgstr "ID"
 
 #. module: account_vat_statement_endyear
-#: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:130
+#: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:131
 #, python-format
 msgid "No base code found for tax code %s"
 msgstr "No base code found for tax code %s"
 
 #. module: account_vat_statement_endyear
-#: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:141
+#: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:142
 #, python-format
 msgid "Not every tax linked to tax code %s is linked to the same base code"
 msgstr "Not every tax linked to tax code %s is linked to the same base code"
@@ -98,7 +98,7 @@ msgstr "Iva a debito periodo precedente"
 #. module: account_vat_statement_endyear
 #: model:ir.actions.report.xml,name:account_vat_statement_endyear.action_report_account_vat_period_end_statement
 msgid "Print Vat Period End Statement"
-msgstr "Stampa Liquidazione IVA"
+msgstr "STAMPA LIQUIDAZIONE IVA"
 
 #. module: account_vat_statement_endyear
 #: view:website:account_vat_statement_endyear.report_vatperiodendstatement_tax_code
@@ -130,7 +130,7 @@ msgstr "Totale"
 #. module: account_vat_statement_endyear
 #: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
 msgid "Total Credit"
-msgstr "Totale Crediti"
+msgstr "Credito totale"
 
 #. module: account_vat_statement_endyear
 #: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
@@ -158,10 +158,15 @@ msgid "Total debit vat"
 msgstr "Totale iva a debito"
 
 #. module: account_vat_statement_endyear
-#: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:200
+#: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
+msgid "Total interest"
+msgstr "Totale interessi"
+
+#. module: account_vat_statement_endyear
+#: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:201
 #, python-format
 msgid "Type account neither credit and debit !"
-msgstr "Type account neither credit and debit !"
+msgstr "Tipo conto deve essere di credito o di debito!"
 
 #. module: account_vat_statement_endyear
 #: view:website:account_vat_statement_endyear.report_vatperiodendstatement_tax_code

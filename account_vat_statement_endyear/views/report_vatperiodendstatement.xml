@@ -49,7 +49,7 @@ Document
                 <h3>Total Statement</h3>
 
             	<table class="table table-condensed">
-            		<!-- tot debit -->
+					<!-- tot debit -->
                		<t t-set="vat_accounts" t-value="account_vat_amounts('debit', statement.debit_vat_account_line_ids)"/>
                		<t t-foreach="vat_accounts" t-as="account_id">
 						<span t-if="(vat_accounts[account_id]['amount'] != 0)">
@@ -94,6 +94,7 @@ Document
                	To pay
                	-->
                	<t t-set="total_to_pay" t-value="(total_statement)"/>
+				<t t-set="total_interest_statement" t-value="(0)"/>
               	<table class="table table-condensed">
                		<!-- previous credit -->
                		<tr>
@@ -120,6 +121,18 @@ Document
            			</tr>
            			</t>
 
+					<!-- tot interest -->
+					<t t-set="interest_accounts" t-value="interest_amounts(statement)"/>
+					<t t-foreach="interest_accounts" t-as="account_id">
+						<span t-if="(interest_accounts[account_id]['amount'] != 0)">
+							<tr>
+								<td class="text-right">Total interest <span t-esc="interest_accounts[account_id]['account_name']"></span></td>
+								<td class="text-right"><span t-esc="formatLang(interest_accounts[account_id]['amount'] * -1)" /></td>
+								<t t-set="total_to_pay" t-value="(total_to_pay + interest_accounts[account_id]['amount'] * -1)"/>
+							</tr>
+						</span>
+            		</t>
+
            			<!-- Total to pay -->
            			<tr>
            				<span t-if="(total_to_pay >= 0)">
@@ -132,6 +145,7 @@ Document
            					<td class="text-right"><strong><span t-esc="formatLang((total_to_pay * -1))"/></strong></td>
            				</span>
            			</tr>
+
             	</table>
             	<!-- payment info -->
             	<t t-if="statement.payment_ids">
