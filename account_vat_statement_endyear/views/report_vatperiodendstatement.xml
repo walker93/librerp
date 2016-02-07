@@ -10,7 +10,7 @@
 <!--
 Document 
  -->
-<template id="report_simplerp_vatperiodendstatement_document">
+<template id="report_vatperiodendstatement_document">
         <t t-call="l10n_it_account.internal_layout">
 			<div class="page">
             	<!--
@@ -237,14 +237,14 @@ Tax Code
 <!--
 Main 
  -->
-<template id="report_simplerp_vatperiodendstatement">
+<template id="report_vatperiodendstatement">
 	<t t-call="report.html_container">
 
         <t t-set="title" t-value="'Vat End Period Statement'"/>
         <t t-foreach="doc_ids" t-as="doc_id">
         	<t t-set="statement" t-value="statement(doc_id)"/>
             <t t-set="l10n_it_count_fiscal_page_base" t-value="l10n_it_count_fiscal_page_base(doc_id)"/>
-			<t t-call="account_vat_statement_endyear.report_simplerp_vatperiodendstatement_document"/>
+			<t t-call="account_vat_statement_endyear.report_vatperiodendstatement_document"/>
         </t>
     </t>
 </template>

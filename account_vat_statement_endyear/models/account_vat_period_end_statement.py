@@ -27,13 +27,13 @@ class Report(orm.Model):
     _inherit = "report"
 
 
-class VatPeriodEndStatementReportSimplerp(report_sxw.rml_parse):
+class VatPeriodEndStatementReport(report_sxw.rml_parse):
     _name = 'report.vat.period.end.statement'
 
     def __init__(self, cr, uid, name, context=None):
         if context is None:
             context = {}
-        super(VatPeriodEndStatementReportSimplerp, self).__init__(
+        super(VatPeriodEndStatementReport, self).__init__(
             cr, uid, name, context=context)
         self.query = ""
         self.tot_currency = 0.0
@@ -213,10 +213,10 @@ class VatPeriodEndStatementReportSimplerp(report_sxw.rml_parse):
         return account_amounts
 
 
-class ReportVatPeriodEndStatementSimplerp(orm.AbstractModel):
+class ReportVatPeriodEndStatement(orm.AbstractModel):
     _name = ('report.account_vat_statement_endyear.'
-             'report_simplerp_vatperiodendstatement')
+             'report_vatperiodendstatement')
     _inherit = 'report.abstract_report'
     _template = ('account_vat_statement_endyear.'
-                 'report_simplerp_vatperiodendstatement')
-    _wrapped_report_class = VatPeriodEndStatementReportSimplerp
+                 'report_vatperiodendstatement')
+    _wrapped_report_class = VatPeriodEndStatementReport

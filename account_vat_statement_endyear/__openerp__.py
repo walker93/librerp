@@ -30,7 +30,7 @@
     ],
     'data': [
         'reports.xml',
-        'views/report_simplerp_vatperiodendstatement.xml',
+        'views/report_vatperiodendstatement.xml',
         'views/account_view.xml',
     ],
     'installable': True
