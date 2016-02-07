@@ -21,7 +21,7 @@
     'name': 'End year vat statement',
     'version': '8.1.0.0.0',
     'category': 'other',
-    'author': 'SimplERP SRL',
+    'author': 'Sergio Corato - SimplERP Srl',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [

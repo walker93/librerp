@@ -13,17 +13,20 @@ Document
 <template id="report_vatperiodendstatement_document">
         <t t-call="l10n_it_account.internal_layout">
 			<div class="page">
-            	<!--
-            	Periods detail
-            	-->
-            	<span t-if="statement.endyear_statement">
+				<span t-if="statement.endyear_statement">
 					<t t-set="periods" t-value="statement.endyear_period_ids"/>
 				</span>
 				<span t-if="not statement.endyear_statement">
 					<t t-set="periods" t-value="statement.period_ids"/>
 				</span>
-
-               		<!-- Purchase -->
+				<!--
+            	From date to date
+            	-->
+				<h3>Dal <span t-esc="time.strftime('%d/%m/%Y', time.strptime(periods[0].date_start, '%Y-%m-%d'))"/> al <span t-esc="time.strftime('%d/%m/%Y', time.strptime(periods[-1].date_stop, '%Y-%m-%d'))"/></h3>
+            	<!--
+            	Periods detail
+            	-->
+            		<!-- Purchase -->
                		<t t-set="tax_code_amounts" t-value="tax_codes_amounts([period.id for period in periods], [l.tax_code_id.id for l in statement.credit_vat_account_line_ids])"/>
                		<t t-set="tax_code_type" t-value="'credit'"/>
                		<t t-set="tax_code_section" t-value="'purchase'"/>

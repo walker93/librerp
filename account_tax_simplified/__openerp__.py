@@ -24,7 +24,7 @@
     'version': '8.0.1.1.0',
     'category': 'Localisation/Italy',
     'summary': 'Simplified tax view and creation',
-    'author': 'Sergio Corato',
+    'author': 'Sergio Corato - SimplERP Srl',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     "depends": [
