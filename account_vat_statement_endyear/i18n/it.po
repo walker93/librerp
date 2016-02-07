@@ -23,7 +23,7 @@ msgstr "Aggiungi periodi"
 #. module: account_vat_statement_endyear
 #: view:website:account_vat_statement_endyear.report_vatperiodendstatement_tax_code
 msgid "Base"
-msgstr "Base"
+msgstr "Imponibile"
 
 #. module: account_vat_statement_endyear
 #: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
@@ -176,7 +176,7 @@ msgstr "Non deducibile"
 #. module: account_vat_statement_endyear
 #: view:website:account_vat_statement_endyear.report_vatperiodendstatement_tax_code
 msgid "Vat"
-msgstr "Imposta"
+msgstr "IVA"
 
 #. module: account_vat_statement_endyear
 #: view:website:account_vat_statement_endyear.report_vatperiodendstatement_tax_code

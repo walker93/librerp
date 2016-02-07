@@ -126,7 +126,7 @@ Document
 					<t t-foreach="interest_accounts" t-as="account_id">
 						<span t-if="(interest_accounts[account_id]['amount'] != 0)">
 							<tr>
-								<td class="text-right">Total interest <span t-esc="interest_accounts[account_id]['account_name']"></span></td>
+								<td class="text-right">Total interest </td>
 								<td class="text-right"><span t-esc="formatLang(interest_accounts[account_id]['amount'] * -1)" /></td>
 								<t t-set="total_to_pay" t-value="(total_to_pay + interest_accounts[account_id]['amount'] * -1)"/>
 							</tr>
@@ -192,17 +192,17 @@ Tax Code
 	<table class="table table-condensed tax-codes">
 		<thead>
            	<tr class="text-center">
-               	<th style="width:10%;">Vat code</th>
-               	<th style="width:30%;">Description</th>
-               	<th style="width:15%;" class="text-right">Base</th>
-               	<th style="width:15%;" class="text-right">Vat</th>
+               	<th style="width:15%;">Vat code</th>
+               	<th style="width:45%;">Description</th>
+               	<th style="width:10%;" class="text-right">Base</th>
+               	<th style="width:10%;" class="text-right">Vat</th>
                	<span t-if="(tax_code_type == 'credit')">
-               		<th style="width:15%;" class="text-right">Deductible</th>
-               		<th style="width:15%;" class="text-right">Undeductible</th>
+               		<th style="width:10%;" class="text-right">Deductible</th>
+               		<th style="width:10%;" class="text-right">Undeductible</th>
 				</span>
 				<span t-if="not (tax_code_type == 'credit')">
-					<th style="width:15%;"></th>
-					<th style="width:15%;"></th>
+					<th style="width:10%;border:0px;background-color:#ffffff;"></th>
+					<th style="width:10%;border:0px;background-color:#ffffff;"></th>
 				</span>
         	</tr>
        	</thead>
@@ -231,8 +231,8 @@ Tax Code
     				<td class="text-right"><span t-esc="formatLang(tax_code_vat_undeductible)" /></td>
     			</span>
     			<span t-if="not (tax_code_type == 'credit')">
-    				<td></td>
-    				<td></td>
+    				<td style="border:0px;background-color:#ffffff;"></td>
+    				<td style="border:0px;background-color:#ffffff;"></td>
     			</span>
     		</tr>
     		<!-- sum total  -->
