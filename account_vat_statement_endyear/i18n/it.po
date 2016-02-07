@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-07 11:11+0000\n"
-"PO-Revision-Date: 2016-02-07 11:11+0000\n"
+"POT-Creation-Date: 2016-02-07 15:26+0000\n"
+"PO-Revision-Date: 2016-02-07 15:26+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: account_vat_statement_endyear
-#: view:account.vat.period.end.statement:account_vat_statement_endyear.view_account_vat_period_end_statement_simplerp
+#: view:account.vat.period.end.statement:account_vat_statement_endyear.view_account_vat_period_end_statement_endyear
 msgid "Add periods"
-msgstr "Aggiungi i periodi"
+msgstr "Aggiungi periodi"
 
 #. module: account_vat_statement_endyear
 #: view:website:account_vat_statement_endyear.report_vatperiodendstatement_tax_code
 msgid "Base"
-msgstr "Imponibile"
+msgstr "Base"
+
+#. module: account_vat_statement_endyear
+#: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
+msgid "Dal"
+msgstr "Dal"
 
 #. module: account_vat_statement_endyear
 #: view:website:account_vat_statement_endyear.report_vatperiodendstatement_tax_code
@@ -37,8 +42,8 @@ msgstr "Descrizione"
 
 #. module: account_vat_statement_endyear
 #: field:account.vat.period.end.statement,statement_ids:0
-msgid "End of year Statement childs"
-msgstr "Liquidazione di fine anno - figli"
+msgid "Liquidazione di fine anno - figli"
+msgstr "End of year Statement childs"
 
 #. module: account_vat_statement_endyear
 #: field:account.vat.period.end.statement,endyear_statement_id:0
@@ -64,6 +69,11 @@ msgid "Error"
 msgstr "Errore"
 
 #. module: account_vat_statement_endyear
+#: field:report.account_vat_statement_endyear.report_vatperiodendstatement,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: account_vat_statement_endyear
 #: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:130
 #, python-format
 msgid "No base code found for tax code %s"
@@ -76,19 +86,19 @@ msgid "Not every tax linked to tax code %s is linked to the same base code"
 msgstr "Not every tax linked to tax code %s is linked to the same base code"
 
 #. module: account_vat_statement_endyear
-#: view:website:account_vat_statement_endyear.report_simplerp_vatperiodendstatement_document
+#: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
 msgid "Previous credit vat"
 msgstr "Iva a credito periodo precedente"
 
 #. module: account_vat_statement_endyear
-#: view:website:account_vat_statement_endyear.report_simplerp_vatperiodendstatement_document
+#: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
 msgid "Previous debit vat"
 msgstr "Iva a debito periodo precedente"
 
 #. module: account_vat_statement_endyear
-#: model:ir.actions.report.xml,name:account_vat_statement_endyear.action_report_account_vat_period_end_statement_simplerp
-msgid "Print Vat Period End Statement Simplerp"
-msgstr "Print Vat Period End Statement Simplerp"
+#: model:ir.actions.report.xml,name:account_vat_statement_endyear.action_report_account_vat_period_end_statement
+msgid "Print Vat Period End Statement"
+msgstr "Stampa Liquidazione IVA"
 
 #. module: account_vat_statement_endyear
 #: view:website:account_vat_statement_endyear.report_vatperiodendstatement_tax_code
@@ -101,7 +111,7 @@ msgid "Report"
 msgstr "Report"
 
 #. module: account_vat_statement_endyear
-#: view:website:account_vat_statement_endyear.report_simplerp_vatperiodendstatement_document
+#: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
 msgid "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in Italia, Beni FUE in Italia, Cell., Microproc.\n"
 "Operazioni UE: Servizi Si Intra, Servizi No Intra, Beni UE, Rev.Charge UE, Cell. UE, Microproc. UE"
 msgstr "Reverse charge: comprende RevCharge, Op.SM, Op.Vat., Op.FUE, Beni UE in Italia, Beni FUE in Italia, Cell., Microproc.\n"
@@ -118,27 +128,32 @@ msgid "Total"
 msgstr "Totale"
 
 #. module: account_vat_statement_endyear
-#: view:website:account_vat_statement_endyear.report_simplerp_vatperiodendstatement_document
+#: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
 msgid "Total Credit"
-msgstr "Credito totale"
+msgstr "Totale Crediti"
 
 #. module: account_vat_statement_endyear
-#: view:website:account_vat_statement_endyear.report_simplerp_vatperiodendstatement_document
+#: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
+msgid "Total Debit"
+msgstr "Totale Debiti"
+
+#. module: account_vat_statement_endyear
+#: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
 msgid "Total Statement"
 msgstr "Riepilogo Liquidazione"
 
 #. module: account_vat_statement_endyear
-#: view:website:account_vat_statement_endyear.report_simplerp_vatperiodendstatement_document
+#: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
 msgid "Total To Pay"
 msgstr "Totale da pagare"
 
 #. module: account_vat_statement_endyear
-#: view:website:account_vat_statement_endyear.report_simplerp_vatperiodendstatement_document
+#: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
 msgid "Total credit vat"
 msgstr "Totale iva a credito"
 
 #. module: account_vat_statement_endyear
-#: view:website:account_vat_statement_endyear.report_simplerp_vatperiodendstatement_document
+#: view:website:account_vat_statement_endyear.report_vatperiodendstatement_document
 msgid "Total debit vat"
 msgstr "Totale iva a debito"
 
@@ -146,7 +161,7 @@ msgstr "Totale iva a debito"
 #: code:addons/account_vat_statement_endyear/models/account_vat_period_end_statement.py:200
 #, python-format
 msgid "Type account neither credit and debit !"
-msgstr "Tipo del conto né credito né debito !"
+msgstr "Type account neither credit and debit !"
 
 #. module: account_vat_statement_endyear
 #: view:website:account_vat_statement_endyear.report_vatperiodendstatement_tax_code
@@ -164,17 +179,17 @@ msgid "Vat code"
 msgstr "Codice Iva"
 
 #. module: account_vat_statement_endyear
-#: view:account.vat.period.end.statement:account_vat_statement_endyear.view_account_vat_period_end_statement_simplerp
+#: view:account.vat.period.end.statement:account_vat_statement_endyear.view_account_vat_period_end_statement_endyear
 msgid "{'invisible': ['|',('state','not in',['draft',]),('endyear_statement','=',True)]}"
 msgstr "{'invisible': ['|',('state','not in',['draft',]),('endyear_statement','=',True)]}"
 
 #. module: account_vat_statement_endyear
-#: view:account.vat.period.end.statement:account_vat_statement_endyear.view_account_vat_period_end_statement_simplerp
+#: view:account.vat.period.end.statement:account_vat_statement_endyear.view_account_vat_period_end_statement_endyear
 msgid "{'invisible': [('endyear_statement','=',True)]}"
 msgstr "{'invisible': [('endyear_statement','=',True)]}"
 
 #. module: account_vat_statement_endyear
-#: view:account.vat.period.end.statement:account_vat_statement_endyear.view_account_vat_period_end_statement_simplerp
+#: view:account.vat.period.end.statement:account_vat_statement_endyear.view_account_vat_period_end_statement_endyear
 msgid "{'readonly': [('state', 'in', ('confirmed', 'paid'))], 'invisible': [('endyear_statement','=',True)]}"
 msgstr "{'readonly': [('state', 'in', ('confirmed', 'paid'))], 'invisible': [('endyear_statement','=',True)]}"
 

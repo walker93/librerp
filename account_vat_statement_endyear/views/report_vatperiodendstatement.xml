@@ -43,8 +43,10 @@ Document
             	Total Compentence
             	-->
             	<t t-set="total_statement" t-value="(0)"/>
+                <t t-set="total_debit_statement" t-value="(0)"/>
+                <t t-set="total_credit_statement" t-value="(0)"/>
 
-            	<h3>Total Statement</h3>
+                <h3>Total Statement</h3>
 
             	<table class="table table-condensed">
             		<!-- tot debit -->
@@ -58,8 +60,12 @@ Document
 						</span>
                			<!-- sum -->
                			<t t-set="total_statement" t-value="(total_statement + vat_accounts[account_id]['amount'])"/>
+                        <t t-set="total_debit_statement" t-value="(total_debit_statement + vat_accounts[account_id]['amount'])"/>
                		</t>
-
+                    <tr>
+                        <td class="text-right"><strong>Total Debit</strong></td>
+                        <td class="text-right"><strong><span t-esc="formatLang(total_debit_statement)" /></strong></td>
+                    </tr>
             		<!-- tot credit -->
             		<t t-set="vat_accounts" t-value="account_vat_amounts('credit', statement.credit_vat_account_line_ids)"/>
                		<t t-foreach="vat_accounts" t-as="account_id">
@@ -71,8 +77,12 @@ Document
 						</span>
                			<!-- sum -->
                			<t t-set="total_statement" t-value="(total_statement + ( -1 * vat_accounts[account_id]['amount']))"/>
+                        <t t-set="total_credit_statement" t-value="(total_credit_statement + ( vat_accounts[account_id]['amount']))"/>
                		</t>
-
+                    <tr>
+                        <td class="text-right"><strong>Total Credit</strong></td>
+                        <td class="text-right"><strong><span t-esc="formatLang(total_credit_statement)" /></strong></td>
+                    </tr>
                		<!-- tot statement -->
                		<tr>
           				<td class="text-right"><strong>Total Statement</strong></td>
