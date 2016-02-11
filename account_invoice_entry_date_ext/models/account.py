@@ -18,7 +18,7 @@
 #
 #
 import datetime
-from openerp import fields, models
+from openerp import models
 
 
 class AccountInvoice(models.Model):
