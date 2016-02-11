@@ -1,27 +1,24 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
 
-
-Account invoice entry date
+====================================
+Account invoice entry date extension
 ====================================
 
-This module allows to specify the date to be used by the move created while confirming (supplier) invoice
+This module put supplier invoice number instead of sequence number in ref field while creating (supplier) invoice and solve some ergonomic issues
 
 
 Contributors
 ------------
 
-* Paolo Chiara <p.chiara@isa.it>
-* Sergio Corato <sergiocorato@gmail.com>
+* Sergio Corato <sergio.corato@gmail.com>
+==============
 
 Maintainer
 ----------
 
-.. image:: http://simplerp.it/images/Logo.png
-
-SimplERP Srl
-=======================
-
-http://simplerp.it
+.. image:: https://www.simplerp.it/website_logo.png
+   :alt: SimplERP Srl
+   :target: http://simplerp.it
 
 This module is maintained by SimplERP Srl.
 
