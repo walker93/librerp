@@ -28,7 +28,7 @@ class ResPartner(models.Model):
         res = super(ResPartner, self).create(vals)
         if 'country_id' in vals:
             fp = self.env['account.fiscal.position'].search(
-                    [('country_id', '=', vals['country_id'])], limit=1)
+                [('country_id', '=', vals['country_id'])], limit=1)
             if fp:
                 res.property_account_position = fp
         return res
@@ -38,7 +38,7 @@ class ResPartner(models.Model):
         res = super(ResPartner, self).write(vals)
         if 'country_id' in vals:
             fp = self.env['account.fiscal.position'].search(
-                    [('country_id', '=', vals['country_id'])], limit=1)
+                [('country_id', '=', vals['country_id'])], limit=1)
             if fp:
                 res.property_account_position = fp
         return res
