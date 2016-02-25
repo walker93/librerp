@@ -25,6 +25,7 @@
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
     'depends': [
+        'account',
     ],
     'data': [
     ],
