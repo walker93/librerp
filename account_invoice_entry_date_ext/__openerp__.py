@@ -19,7 +19,7 @@
 #
 {
     'name': 'Account invoice entry date extension',
-    'version': '8.1.0.0.0',
+    'version': '8.1.0.0.1',
     'category': 'other',
     'author': 'SimplERP SRL',
     'website': 'http://www.simplerp.it',
