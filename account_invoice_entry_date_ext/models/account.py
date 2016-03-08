@@ -19,7 +19,8 @@
 #
 import datetime
 import time
-from openerp import models
+from openerp import models, fields, api, _
+from openerp.exceptions import Warning
 
 
 class AccountInvoice(models.Model):
@@ -32,6 +33,7 @@ class AccountInvoice(models.Model):
         for inv in self.browse(cr, uid, ids):
             date_invoice = inv.date_invoice
             reg_date = inv.registration_date
+            period_id = False
             if not inv.registration_date:
                 if not inv.date_invoice:
                     reg_date = time.strftime('%Y-%m-%d')
