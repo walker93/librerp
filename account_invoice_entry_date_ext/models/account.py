@@ -19,7 +19,7 @@
 #
 import datetime
 import time
-from openerp import models, fields, api, _
+from openerp import models, _
 from openerp.exceptions import Warning
 
 
