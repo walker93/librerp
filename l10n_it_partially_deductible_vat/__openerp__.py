@@ -26,7 +26,7 @@
 
 {
     "name": "Italy - Partially Deductible VAT",
-    "version": "4.0.0.0",
+    "version": "4.0.0.1",
     "depends": ['account'],
     "author": """OpenERP Italian Community,Odoo Community Association (OCA),
 SimplERP srl""",
