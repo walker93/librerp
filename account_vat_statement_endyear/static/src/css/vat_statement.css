@@ -10,3 +10,9 @@ table td {
 tr {
     page-break-inside: avoid;
 }
+.tax-codes td {
+    border-bottom: 1px black solid;
+}
+td.text-right {
+    border-top: 1px solid black !important;
+}

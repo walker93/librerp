@@ -189,7 +189,7 @@ Tax Code
         <span t-if="(tax_code_section == 'sale')">Sale</span>
         <span t-if="(tax_code_section == 'purchase')">Purchase</span>
     </h4>
-	<table class="table table-condensed tax-codes">
+	<table class="table-condensed tax-codes">
 		<thead>
            	<tr class="text-center">
                	<th style="width:15%;">Vat code</th>
@@ -201,8 +201,8 @@ Tax Code
                		<th style="width:10%;" class="text-right">Undeductible</th>
 				</span>
 				<span t-if="not (tax_code_type == 'credit')">
-					<th style="width:10%;border:0px;background-color:#ffffff;"></th>
-					<th style="width:10%;border:0px;background-color:#ffffff;"></th>
+					<th style="width:10%;border-bottom:0px !important;background-color:#ffffff;"></th>
+					<th style="width:10%;border-bottom:0px !important;background-color:#ffffff;"></th>
 				</span>
         	</tr>
        	</thead>
@@ -231,8 +231,8 @@ Tax Code
     				<td class="text-right"><span t-esc="formatLang(tax_code_vat_undeductible)" /></td>
     			</span>
     			<span t-if="not (tax_code_type == 'credit')">
-    				<td style="border:0px;background-color:#ffffff;"></td>
-    				<td style="border:0px;background-color:#ffffff;"></td>
+    				<td style="border-bottom:0px !important;background-color:#ffffff;"></td>
+    				<td style="border-bottom:0px !important;background-color:#ffffff;"></td>
     			</span>
     		</tr>
     		<!-- sum total  -->
@@ -244,7 +244,7 @@ Tax Code
     
 		<!-- total -->
 		<tr>
-			<td></td>
+			<td/>
 			<td class="text-right"><strong>Total</strong></td>
 			<td class="text-right"><strong><span t-esc="formatLang(total_base)" /></strong></td>
 			<td class="text-right"><strong><span t-esc="formatLang(total_vat)" /></strong></td>
@@ -253,8 +253,8 @@ Tax Code
 				<td class="text-right"><strong><span t-esc="formatLang(total_vat_undeductible)" /></strong></td>
 			</span>
 			<span t-if="not (tax_code_type == 'credit')">
-				<td></td>
-				<td></td>
+				<td style="border-bottom:0px !important;background-color:#ffffff;"></td>
+				<td style="border-bottom:0px !important;background-color:#ffffff;"></td>
 			</span>
 		</tr>
 	</table>
