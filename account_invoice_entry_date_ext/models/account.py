@@ -17,7 +17,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-import datetime
+import datetime, time
 from openerp import models
 
 
@@ -25,6 +25,42 @@ class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     def action_move_create(self, cr, uid, ids, context=None):
+        if not context:
+            context = {}
+
+        for inv in self.browse(cr, uid, ids):
+            date_invoice = inv.date_invoice
+            reg_date = inv.registration_date
+            if not inv.registration_date:
+                if not inv.date_invoice:
+                    reg_date = time.strftime('%Y-%m-%d')
+                else:
+                    reg_date = inv.date_invoice
+
+            if date_invoice and reg_date:
+                if date_invoice > reg_date:
+                    raise Warning(_("The invoice date cannot be later than the"
+                                    " date of registration!"))
+
+            date_start = inv.registration_date or inv.date_invoice \
+                or time.strftime('%Y-%m-%d')
+            date_stop = inv.registration_date or inv.date_invoice \
+                or time.strftime('%Y-%m-%d')
+
+            period_ids = self.pool.get('account.period').search(
+                cr, uid,
+                [
+                    ('date_start', '<=', date_start),
+                    ('date_stop', '>=', date_stop),
+                    ('company_id', '=', inv.company_id.id)
+                    ])
+            if period_ids:
+                period_id = period_ids[0]
+
+            self.write(
+                cr, uid, [inv.id], {
+                    'registration_date': reg_date, 'period_id': period_id})
+
         super(AccountInvoice, self).action_move_create(
             cr, uid, ids, context=context)
 
