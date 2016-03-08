@@ -26,7 +26,7 @@ class ResPartner(models.Model):
     @api.model
     def create(self, vals):
         res = super(ResPartner, self).create(vals)
-        if 'country_id' in vals and not 'property_account_position' in vals:
+        if 'country_id' in vals and 'property_account_position' not in vals:
             fp = self.env['account.fiscal.position'].search(
                 [('country_id', '=', vals['country_id'])], limit=1)
             if fp:
@@ -36,7 +36,7 @@ class ResPartner(models.Model):
     @api.model
     def write(self, vals):
         res = super(ResPartner, self).write(vals)
-        if 'country_id' in vals and not 'property_account_position' in vals:
+        if 'country_id' in vals and 'property_account_position' not in vals:
             fp = self.env['account.fiscal.position'].search(
                 [('country_id', '=', vals['country_id'])], limit=1)
             if fp:

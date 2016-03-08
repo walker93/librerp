@@ -17,7 +17,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-import datetime, time
+import datetime
+import time
 from openerp import models
 
 
