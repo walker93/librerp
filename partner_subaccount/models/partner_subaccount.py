@@ -238,7 +238,6 @@ class res_partner(models.Model):
         company = self.env.user.company_id
         if not company.enable_partner_subaccount:
             return super(res_partner, self).write(vals)
-        account_obj = self.env['account.account']
         for partner in self:
             if partner.block_ref_customer or vals.get('customer', False):
                 vals['block_ref_customer'] = True
@@ -248,9 +247,7 @@ class res_partner(models.Model):
                 if partner.property_account_receivable.type != 'view':
                     if partner.property_account_receivable.name \
                             != vals['name']:
-                        account_obj.write(
-                            partner.property_account_receivable.id,
-                            {'name': vals['name']})
+                        partner.property_account_receivable.name = vals['name']
                 else:  # view type so create partner account
                     if 'property_customer_ref' not in vals:
                         vals['property_customer_ref'] = \
@@ -274,9 +271,7 @@ class res_partner(models.Model):
                     vals['name'] = partner.name
                 if partner.property_account_payable.type != 'view':
                     if partner.property_account_payable.name != vals['name']:
-                        account_obj.write(
-                            partner.property_account_payable.id,
-                            {'name': vals['name']})
+                        partner.property_account_payable.name = vals['name']
                 else:
                     if 'property_supplier_ref' not in vals:
                         vals['property_supplier_ref'] = \
