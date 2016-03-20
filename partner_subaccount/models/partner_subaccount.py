@@ -251,7 +251,7 @@ class res_partner(models.Model):
                         account_obj.write(
                             partner.property_account_receivable.id,
                             {'name': vals['name']})
-                else:  # property_account_receivable is view type so create partner account
+                else:  # view type so create partner account
                     if 'property_customer_ref' not in vals:
                         vals['property_customer_ref'] = \
                             self.env['ir.sequence'].get(
