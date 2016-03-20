@@ -33,7 +33,7 @@ class ResPartner(models.Model):
                 res.property_account_position = fp
         return res
 
-    @api.model
+    @api.multi
     def write(self, vals):
         res = super(ResPartner, self).write(vals)
         if 'country_id' in vals and 'property_account_position' not in vals:
