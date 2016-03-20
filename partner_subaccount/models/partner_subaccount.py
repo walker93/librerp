@@ -231,7 +231,7 @@ class res_partner(models.Model):
                 cr, SUPERUSER_ID, ids_account, context)
         return res
 
-    @api.model
+    @api.multi
     def write(self, vals):
         if not self._context:  # write is called from create, then skip
             return super(res_partner, self).write(vals)
