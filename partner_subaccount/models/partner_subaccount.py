@@ -231,47 +231,31 @@ class res_partner(models.Model):
                 cr, SUPERUSER_ID, ids_account, context)
         return res
 
-    def write(self, cr, uid, ids, vals, context=None):
-        if not context:  # write is called from create, then skip
-            context = {}
-            return super(res_partner, self).write(
-                cr, uid, ids, vals, context=context)
-        company = self.pool['res.users'].browse(
-            cr, uid, uid, context).company_id
+    @api.multi
+    def write(self, vals):
+        if not self._context:  # write is called from create, then skip
+            return super(res_partner, self).write(vals)
+        company = self.env.user.company_id
         if not company.enable_partner_subaccount:
-            return super(res_partner, self).write(
-                cr, uid, ids, vals, context=context)
-        if isinstance(ids, (int, long)):
-            ids = [ids]
-        account_obj = self.pool['account.account']
-        if ids:
-            partner = self.browse(cr, uid, ids[0], context)
-
+            return super(res_partner, self).write(vals)
+        account_obj = self.env['account.account']
+        for partner in self:
             if partner.block_ref_customer or vals.get('customer', False):
-                # already a customer or flagged as a customer
                 vals['block_ref_customer'] = True
                 if 'name' not in vals:
-                    # if there isn't the name of partner - then it is not
-                    # modified - so assign it
                     vals['name'] = partner.name
-
+                # if there is already an account we update account name
                 if partner.property_account_receivable.type != 'view':
-                    # there is already an account created for the partner
                     if partner.property_account_receivable.name \
                             != vals['name']:
-                        # the account name if different from the partner name,
-                        # so we must update the account name
                         account_obj.write(
-                            cr, uid, partner.property_account_receivable.id,
+                            partner.property_account_receivable.id,
                             {'name': vals['name']})
-                else:
-                    # the property_account_receivable is a view type,
-                    # so we have to create the partner account
+                else:  # property_account_receivable is view type so create partner account
                     if 'property_customer_ref' not in vals:
-                        # there isn't the partner code, so create it
                         vals['property_customer_ref'] = \
-                            self.pool['ir.sequence'].get(
-                                cr, uid, 'SEQ_CUSTOMER_REF') or ''
+                            self.env['ir.sequence'].get(
+                                'SEQ_CUSTOMER_REF') or ''
                     if vals.get('selection_account_receivable', False):
                         vals['property_account_receivable'] = \
                             vals['selection_account_receivable']
@@ -281,7 +265,7 @@ class res_partner(models.Model):
                         # è il conto vista
                     vals['property_account_receivable'] = \
                         self.get_create_customer_partner_account(
-                            cr, uid, vals, context)
+                            self._cr, self._uid, vals, self._context)
 
             if partner.block_ref_supplier or vals.get('supplier', False):
                 # already a supplier or flagged as a supplier
@@ -291,13 +275,13 @@ class res_partner(models.Model):
                 if partner.property_account_payable.type != 'view':
                     if partner.property_account_payable.name != vals['name']:
                         account_obj.write(
-                            cr, uid, partner.property_account_payable.id,
+                            partner.property_account_payable.id,
                             {'name': vals['name']})
                 else:
                     if 'property_supplier_ref' not in vals:
                         vals['property_supplier_ref'] = \
-                            self.pool['ir.sequence'].get(
-                                cr, uid, 'SEQ_SUPPLIER_REF') or ''
+                            self.env['ir.sequence'].get(
+                                'SEQ_SUPPLIER_REF') or ''
                     if vals.get('selection_account_payable', False):
                         vals['property_account_payable'] = \
                             vals['selection_account_payable']
@@ -306,10 +290,9 @@ class res_partner(models.Model):
                             partner.property_account_payable.id
                     vals['property_account_payable'] = \
                         self.get_create_supplier_partner_account(
-                            cr, uid, vals, context)
+                            self._cr, self._uid, vals, self._context)
 
-        return super(res_partner, self).write(
-            cr, uid, ids, vals, context=context)
+        return super(res_partner, self).write(vals)
 
     def copy(self, cr, uid, partner_id, defaults, context=None):
         raise Warning(_('Duplication of a partner is not allowed'))
