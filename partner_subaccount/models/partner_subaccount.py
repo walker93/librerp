@@ -76,17 +76,19 @@ class res_partner(models.Model):
 
         return res
 
-    def get_create_supplier_partner_account(self, cr, uid, vals, context):
-        return self.get_create_partner_account(
-            cr, uid, vals, 'supplier', context)
+    @api.multi
+    def get_create_supplier_partner_account(self, vals):
+        return self.get_create_partner_account(vals, 'supplier')
 
-    def get_create_customer_partner_account(self, cr, uid, vals, context):
+    @api.multi
+    def get_create_customer_partner_account(self, vals):
         return self.get_create_partner_account(
-            cr, uid, vals, 'customer', context)
+            vals, 'customer')
 
-    def get_create_partner_account(self, cr, uid, vals, account_type, context):
-        account_obj = self.pool['account.account']
-        account_type_obj = self.pool['account.account.type']
+    @api.multi
+    def get_create_partner_account(self, vals, account_type):
+        account_obj = self.env['account.account']
+        account_type_obj = self.env['account.account.type']
 
         if account_type == 'customer':
             property_account = 'property_account_receivable'
@@ -102,33 +104,31 @@ class res_partner(models.Model):
 
         if not vals.get(property_account, False):
             vals[property_account] = self._get_chart_template_property(
-                cr, uid, property_account, context)
+                self._cr, self._uid, property_account, self._context)
 
         property_account_id = vals.get(property_account, False)
         if property_account_id:
-            property_account = account_obj.browse(
-                cr, uid, property_account_id, context)
-
+            property_account = account_obj.browse(property_account_id)
             account_ids = account_obj.search(
-                cr, uid, [('code', '=', '{0}{1}'.format(
+                [('code', '=', '{0}{1}'.format(
                     property_account.code, vals[property_ref]))])
             if account_ids:
                 return account_ids[0]
             else:
                 account_type_id = account_type_obj.search(
-                    cr, uid, [('code', '=', type_account)], context=context)[0]
+                    [('code', '=', type_account)])[0]
 
-                return account_obj.create(cr, uid, {
+                return account_obj.create({
                     'name': vals.get('name', ''),
                     'code': '{0}{1}'.format(
                         property_account.code, vals[property_ref]),
-                    'user_type': account_type_id,
+                    'user_type': account_type_id.id,
                     'type': type_account,
                     'parent_id': property_account_id,
                     'active': True,
                     'reconcile': True,
                     'currency_mode': property_account.currency_mode,
-                }, context)
+                })
         else:
             return False
 
@@ -261,8 +261,7 @@ class res_partner(models.Model):
                             partner.property_account_receivable.id
                         # è il conto vista
                     vals['property_account_receivable'] = \
-                        self.get_create_customer_partner_account(
-                            self._cr, self._uid, vals, self._context)
+                        self.get_create_customer_partner_account(vals)
 
             if partner.block_ref_supplier or vals.get('supplier', False):
                 # already a supplier or flagged as a supplier
