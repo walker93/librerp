@@ -1,26 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#
-#    Copyright (C) 2015 SimplERP srl (<http://www.simplerp.it>).
-#    Copyright (c) 2014 Didotech SRL (info at didotech.com)
-#
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+# For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-
 from openerp import models, fields, api, _
-from openerp import SUPERUSER_ID
 from openerp.exceptions import Warning
 
 
@@ -199,34 +181,31 @@ class ResPartner(models.Model):
 
         return super(ResPartner, self).create(vals)
 
-    def unlink(self, cr, uid, ids, context=None):
-        if not context:
-            context = {}
+    @api.multi
+    def unlink(self):
         ids_account_payable = []
         ids_account_receivable = []
-        for partner in self.pool['res.partner'].browse(cr, uid, ids, context):
-
+        for partner in self:
             if partner.property_account_payable and \
                     partner.property_account_payable.type != 'view':
                 if partner.property_account_payable.balance == 0.0:
                     ids_account_payable.append(
                         partner.property_account_payable.id)
                 else:
-                    ids.remove(partner.id)
+                    self.remove(partner)
             if partner.property_account_receivable and \
                     partner.property_account_receivable.type != 'view':
                 if partner.property_account_receivable.balance == 0.0:
                     ids_account_receivable.append(
                         partner.property_account_receivable.id)
                 else:
-                    ids.remove(partner.id)
+                    self.remove(partner)
 
-        res = super(ResPartner, self).unlink(cr, uid, ids, context)
+        res = super(ResPartner, self).unlink()
         ids_account = list(set(ids_account_payable + ids_account_receivable))
 
         if res and ids_account:
-            self.pool['account.account'].unlink(
-                cr, SUPERUSER_ID, ids_account, context)
+            self.env['account.account'].sudo().browse(ids_account).unlink()
         return res
 
     @api.multi

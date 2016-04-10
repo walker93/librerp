@@ -33,7 +33,7 @@
   !assert {model: res.partner, id: res_partner_miocliente0}:
     - name == 'CLIENTExxx'
 -
-  Then I verify the partner's code name is updated
+  Then I verify the partner's code name is updated with new name
 -
   !assert {model: res.partner, id: res_partner_miocliente0, string: "Account receivable name is updated"}:
     - property_account_receivable.name == name
