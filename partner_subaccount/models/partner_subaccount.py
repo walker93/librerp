@@ -214,7 +214,7 @@ class ResPartner(models.Model):
             return super(ResPartner, self).write(vals)
         company = self.env.user.company_id
         for partner in self:
-            if not company.enable_partner_subaccount or not partner.is_company:
+            if not company.enable_partner_subaccount:
                 continue
             if partner.block_ref_customer or vals.get('customer', False):
                 vals['block_ref_customer'] = True
