@@ -25,7 +25,7 @@
 
 {
     "name": "Payment terms - Commercial month",
-    "version": "8.0.0.0.2",
+    "version": "8.0.0.0.3",
     "author": "Sergio Corato",
     "website": "http://www.librerp.it",
     "category": "Account / Payments",
