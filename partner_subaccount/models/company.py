@@ -22,13 +22,13 @@
 from openerp import models, fields
 
 
-class res_company(models.Model):
+class ResCompany(models.Model):
     _inherit = 'res.company'
     enable_partner_subaccount = fields.Boolean(
         string='Enable Partner Subaccount', default=True)
 
 
-class account_config_settings(models.TransientModel):
+class AccountConfigSettings(models.TransientModel):
     _inherit = 'account.config.settings'
     enable_partner_subaccount = fields.Boolean(
         string="Enable Partner Subaccount",

@@ -24,7 +24,7 @@ from openerp import SUPERUSER_ID
 from openerp.exceptions import Warning
 
 
-class res_partner(models.Model):
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     property_supplier_ref = fields.Char(
@@ -51,21 +51,19 @@ class res_partner(models.Model):
             'Codice Cliente Univoco'),
     ]
 
-    def _get_chart_template_property(
-            self, cr, uid, property_chart=None, context=None):
+    @api.one
+    def _get_chart_template_property(self, property_chart=None):
         res = []
-        chart_obj = self.pool['account.chart.template']
-        chart_obj_ids = chart_obj.search(cr, SUPERUSER_ID, [])
+        chart_obj = self.env['account.chart.template']
+        chart_obj_ids = chart_obj.sudo().search([])
         if len(chart_obj_ids) > 0:
-            chart_templates = chart_obj.browse(
-                cr, SUPERUSER_ID, chart_obj_ids, context)
+            chart_templates = chart_obj.sudo().browse(chart_obj_ids)
             for chart_template in chart_templates:
                 if property_chart:
                     property_chart_id = getattr(
                         chart_template, property_chart).id
                     # if it's not a view type code, it's a migration
-                    if self.pool['account.account.template'].browse(
-                            cr, SUPERUSER_ID,
+                    if self.env['account.account.template'].sudo().browse(
                             property_chart_id).type != 'view':
                         continue
                     else:
@@ -104,7 +102,7 @@ class res_partner(models.Model):
 
         if not vals.get(property_account, False):
             vals[property_account] = self._get_chart_template_property(
-                self._cr, self._uid, property_account, self._context)
+                property_account)
 
         property_account_id = vals.get(property_account, False)
         if property_account_id:
@@ -136,7 +134,7 @@ class res_partner(models.Model):
     def create(self, vals):
         company = self.env.user.company_id
         if not company.enable_partner_subaccount:
-            return super(res_partner, self).create(vals)
+            return super(ResPartner, self).create(vals)
 
         # 1 se marcato come cliente - inserire se non esiste
         if (vals.get('customer', False) or
@@ -199,7 +197,7 @@ class res_partner(models.Model):
             vals['property_account_payable'] = \
                 self.get_create_supplier_partner_account(vals)
 
-        return super(res_partner, self).create(vals)
+        return super(ResPartner, self).create(vals)
 
     def unlink(self, cr, uid, ids, context=None):
         if not context:
@@ -223,7 +221,7 @@ class res_partner(models.Model):
                 else:
                     ids.remove(partner.id)
 
-        res = super(res_partner, self).unlink(cr, uid, ids, context)
+        res = super(ResPartner, self).unlink(cr, uid, ids, context)
         ids_account = list(set(ids_account_payable + ids_account_receivable))
 
         if res and ids_account:
@@ -234,11 +232,11 @@ class res_partner(models.Model):
     @api.multi
     def write(self, vals):
         if not self._context:  # write is called from create, then skip
-            return super(res_partner, self).write(vals)
+            return super(ResPartner, self).write(vals)
         company = self.env.user.company_id
-        if not company.enable_partner_subaccount:
-            return super(res_partner, self).write(vals)
         for partner in self:
+            if not company.enable_partner_subaccount or not partner.is_company:
+                continue
             if partner.block_ref_customer or vals.get('customer', False):
                 vals['block_ref_customer'] = True
                 if 'name' not in vals:
@@ -286,7 +284,8 @@ class res_partner(models.Model):
                         self.get_create_supplier_partner_account(
                             self._cr, self._uid, vals, self._context)
 
-        return super(res_partner, self).write(vals)
+        return super(ResPartner, self).write(vals)
 
-    def copy(self, cr, uid, partner_id, defaults, context=None):
+    @api.one
+    def copy(self, default=None):
         raise Warning(_('Duplication of a partner is not allowed'))

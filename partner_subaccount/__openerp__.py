@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2015 SimplERP srl (<http://www.simplerp.it>).
+#    Copyright (C) 2015-2016 SimplERP srl (<http://www.simplerp.it>).
 #    Copyright (c) 2013-2014 Didotech SRL (info at didotech.com)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@
 
 {
     'name': 'Create account for partner',
-    'version': '8.1.0.6.2',
+    'version': '8.1.0.7.2',
     'category': 'Generic Modules',
     'website': 'https://www.simplerp.it',
     "author": "Didotech SRL, Sergio Corato - SimplERP Srl",
