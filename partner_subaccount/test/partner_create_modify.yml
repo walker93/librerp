@@ -33,20 +33,10 @@
   !assert {model: res.partner, id: res_partner_miocliente0}:
     - name == 'CLIENTExxx'
 -
-  Then I verify the partner's code name is updated with new name
--
-  !assert {model: res.partner, id: res_partner_miocliente0, string: "Account receivable name is updated"}:
-    - property_account_receivable.name == name
--
   Then I modify the partner flagging as supplier
 - 
   !record {model: res.partner, id: res_partner_miocliente0}:
       supplier: true
--
-  Then I verify the partner is updated
-- 
-  !assert {model: res.partner, id: res_partner_miocliente0, string: "Account payable name is updated"}:
-    - property_account_payable.name == name
 -
   In order to test partner subaccount I create a new customer and supplier.
 - 
@@ -85,11 +75,6 @@
 - 
   !assert {model: res.partner, id: res_partner_miocliente1}:
     - name == 'CLIENTExxxFORNITORE'
--
-  Then I verify the partner's code name is updated
--
-  !assert {model: res.partner, id: res_partner_miocliente1, string: "Account receivable name is updated"}:
-    - property_account_receivable.name == name
 -
   Then I modify the partner flagging as not supplier
 - 
