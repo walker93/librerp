@@ -260,8 +260,7 @@ class ResPartner(models.Model):
                         vals['property_account_payable'] = \
                             partner.property_account_payable.id
                     vals['property_account_payable'] = \
-                        self.get_create_supplier_partner_account(
-                            self._cr, self._uid, vals, self._context)
+                        self.get_create_supplier_partner_account(vals)
 
         return super(ResPartner, self).write(vals)
 
