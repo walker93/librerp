@@ -210,11 +210,12 @@ class ResPartner(models.Model):
 
     @api.multi
     def write(self, vals):
-        if not self._context:  # write is called from create, then skip
+        # write is called from create, then skip
+        if not self._context or vals.get('child_ids', False):
             return super(ResPartner, self).write(vals)
         company = self.env.user.company_id
         for partner in self:
-            if not company.enable_partner_subaccount:
+            if not company.enable_partner_subaccount or not partner.is_company:
                 continue
             if partner.block_ref_customer or vals.get('customer', False):
                 vals['block_ref_customer'] = True
