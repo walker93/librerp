@@ -18,6 +18,7 @@
 #
 #
 from openerp.osv import orm, fields
+import openerp.addons.decimal_precision as dp
 
 
 class AccountVatPeriodEndStatement(orm.Model):
@@ -107,6 +108,7 @@ class AccountVatPeriodEndStatement(orm.Model):
             tax_code_pool = self.pool.get('account.tax.code')
             debit_tax_code_ids = tax_code_pool.search(cr, uid, [
                 ('vat_statement_account_id', '!=', False),
+                # ('exclude_from_registries', '!=', True),
                 ('vat_statement_type', '=', 'debit'),
             ], context=context)
             for debit_tax_code_id in debit_tax_code_ids:
@@ -129,11 +131,14 @@ class AccountVatPeriodEndStatement(orm.Model):
                 debit_line_ids.append({
                     'account_id': debit_tax_code.vat_statement_account_id.id,
                     'tax_code_id': debit_tax_code.id,
-                    'amount': total * debit_tax_code.vat_statement_sign,
-                })
+                    'amount': not debit_tax_code.is_base and total *
+                    debit_tax_code.vat_statement_sign or 0.0,
+                    'amount_base': debit_tax_code.is_base and total *
+                    debit_tax_code.vat_statement_sign or 0.0, })
 
             credit_tax_code_ids = tax_code_pool.search(cr, uid, [
                 ('vat_statement_account_id', '!=', False),
+                # ('exclude_from_registries', '!=', True),
                 ('vat_statement_type', '=', 'credit'),
             ], context=context)
             for credit_tax_code_id in credit_tax_code_ids:
@@ -156,8 +161,10 @@ class AccountVatPeriodEndStatement(orm.Model):
                 credit_line_ids.append({
                     'account_id': credit_tax_code.vat_statement_account_id.id,
                     'tax_code_id': credit_tax_code.id,
-                    'amount': total * credit_tax_code.vat_statement_sign,
-                })
+                    'amount': not credit_tax_code.is_base and total *
+                    credit_tax_code.vat_statement_sign or 0.0,
+                    'amount_base': credit_tax_code.is_base and total *
+                    credit_tax_code.vat_statement_sign or 0.0, })
 
             for debit_line in statement.debit_vat_account_line_ids:
                 debit_line.unlink()
@@ -197,3 +204,19 @@ class AccountVatPeriodEndStatement(orm.Model):
                     }
                 statement_generic_account_line_obj.create(cr, uid, val)
         return True
+
+
+class StatementDebitAccountLine(orm.Model):
+    _inherit = 'statement.debit.account.line'
+    _columns = {
+        'amount_base': fields.float(
+            'Amount base', digits_compute=dp.get_precision('Account')),
+    }
+
+
+class StatementCreditAccountLine(orm.Model):
+    _inherit = 'statement.credit.account.line'
+    _columns = {
+        'amount_base': fields.float(
+            'Amount base', digits_compute=dp.get_precision('Account')),
+    }
