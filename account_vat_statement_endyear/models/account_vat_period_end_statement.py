@@ -117,9 +117,9 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
 
         # search for taxes linked to that code
         tax_ids = tax_pool.search(
-            self.cr, self.uid, ['|', ('tax_code_id', '=', tax_code.id),
-            ('base_code_id', '=', tax_code.id)
-        ], context=context)
+            self.cr, self.uid, [
+                '|', ('tax_code_id', '=', tax_code.id),
+                ('base_code_id', '=', tax_code.id)], context=context)
         if tax_ids:
             tax = tax_pool.browse(
                 self.cr, self.uid, tax_ids[0], context=context)
