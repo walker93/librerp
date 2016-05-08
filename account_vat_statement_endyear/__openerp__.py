@@ -19,7 +19,7 @@
 #
 {
     'name': 'End year vat statement',
-    'version': '8.1.0.1.0',
+    'version': '8.1.0.2.0',
     'category': 'other',
     'author': 'Sergio Corato - SimplERP Srl',
     'website': 'http://www.simplerp.it',

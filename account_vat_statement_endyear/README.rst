@@ -11,7 +11,7 @@ Contributors
 ------------
 
 * Sergio Corato <sergio.corato@gmail.com>
-==============
+=========================================
 * SimplERP srl
 ==============
 

@@ -67,12 +67,12 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
         return statement.fiscal_page_base
 
     def _compute_tax_amount(self, tax, tax_code, base_code, context=None):
-        '''
+        """
         The Tax is child of another main tax.
         The main tax has more childs:
         - Child with tax_code_id are deductible
         - Child without tax_code_id are undeductible
-        '''
+        """
         res = {}
         vat_deductible = 0
         vat_undeductible = 0
@@ -81,19 +81,20 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
             vat_code = tax.parent_id.description
             vat_name = tax.parent_id.name
             for child in tax.parent_id.child_ids:
-                # deductibile
-                if (
-                    child.tax_code_id and
-                    child.tax_code_id.vat_statement_account_id
-                ):
-                    vat_deductible = child.tax_code_id.sum_period
-                # undeductibile
-                else:
-                    vat_undeductible = child.tax_code_id.sum_period
+                if not child.tax_code_id.is_base:
+                    # deductibile
+                    if (
+                        child.tax_code_id and
+                        child.tax_code_id.vat_statement_account_id
+                    ):
+                        vat_deductible = child.tax_code_id.sum_period
+                    # undeductibile
+                    else:
+                        vat_undeductible = child.tax_code_id.sum_period
         else:
             vat_code = tax_code.code
             vat_name = tax_code.name
-            vat_deductible = tax_code.sum_period
+            vat_deductible = not tax_code.is_base and tax_code.sum_period
 
         res[vat_name] = {
             'code': vat_code,
@@ -116,8 +117,9 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
 
         # search for taxes linked to that code
         tax_ids = tax_pool.search(
-            self.cr, self.uid, [('tax_code_id', '=', tax_code.id)],
-            context=context)
+            self.cr, self.uid, ['|', ('tax_code_id', '=', tax_code.id),
+            ('base_code_id', '=', tax_code.id)
+        ], context=context)
         if tax_ids:
             tax = tax_pool.browse(
                 self.cr, self.uid, tax_ids[0], context=context)
@@ -150,7 +152,6 @@ class VatPeriodEndStatementReport(report_sxw.rml_parse):
         for child_code in tax_code.child_ids:
             res = self._build_codes_dict(
                 child_code, res=res, context=context)
-
         return res
 
     def _get_tax_codes_amounts(self, periods, tax_code_ids=None,
