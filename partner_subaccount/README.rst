@@ -2,7 +2,7 @@
 
 
 Partner subaccount
-====================================
+==================
 
 Create one account for every res.partner 
 
@@ -11,7 +11,7 @@ Contributors
 ------------
 
 * Sergio Corato <sergio.corato@gmail.com>
-==============
+=========================================
 * SimplERP srl
 ==============
 
@@ -21,7 +21,7 @@ Maintainer
 .. image:: http://simplerp.it/images/Logo.png
 
 SimplERP Srl
-=======================
+============
 
 http://simplerp.it
 

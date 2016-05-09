@@ -33,7 +33,7 @@ class ResPartner(models.Model):
             'Codice Cliente Univoco'),
     ]
 
-    @api.one
+    @api.multi
     def _get_chart_template_property(self, property_chart=None):
         res = []
         chart_obj = self.env['account.chart.template']
@@ -115,7 +115,8 @@ class ResPartner(models.Model):
     @api.model
     def create(self, vals):
         company = self.env.user.company_id
-        if not company.enable_partner_subaccount:
+        if not company.enable_partner_subaccount or vals.get(
+                'parent_id', False):
             return super(ResPartner, self).create(vals)
 
         # 1 se marcato come cliente - inserire se non esiste
@@ -126,6 +127,7 @@ class ResPartner(models.Model):
                 self._context.get('search_default_supplier', False) or
                 self._context.get('default_supplier', False)):
             vals['block_ref_customer'] = True
+            vals['is_company'] = True
             if not vals.get('property_customer_ref', False):
                 vals['property_customer_ref'] = self.pool['ir.sequence'].get(
                     self._cr, self._uid, 'SEQ_CUSTOMER_REF') or ''
@@ -144,6 +146,7 @@ class ResPartner(models.Model):
                 self._context.get('search_default_supplier', False) or
                 self._context.get('default_supplier', False)):
             vals['block_ref_supplier'] = True
+            vals['is_company'] = True
             if not vals.get('property_supplier_ref', False):
                 vals['property_supplier_ref'] = self.pool['ir.sequence'].get(
                     self._cr, self._uid, 'SEQ_SUPPLIER_REF') or ''
@@ -161,6 +164,7 @@ class ResPartner(models.Model):
                 self._context.get('search_default_supplier', False) or
                 self._context.get('default_supplier', False)):
             vals['block_ref_customer'] = True
+            vals['is_company'] = True
             if not vals.get('property_customer_ref', False):
                 vals['property_customer_ref'] = self.pool['ir.sequence'].get(
                     self._cr, self._uid, 'SEQ_CUSTOMER_REF') or ''
