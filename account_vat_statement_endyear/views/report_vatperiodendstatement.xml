@@ -11,7 +11,7 @@
 Document 
  -->
 <template id="report_vatperiodendstatement_document">
-        <t t-call="l10n_it_account.internal_layout">
+        <t t-call="l10n_it_account_ext.internal_layout">
 			<div class="page">
 				<span t-if="statement.endyear_statement">
 					<t t-set="periods" t-value="statement.endyear_period_ids"/>

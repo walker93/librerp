@@ -24,9 +24,11 @@
     'author': 'Sergio Corato - SimplERP Srl',
     'website': 'http://www.simplerp.it',
     'license': 'AGPL-3',
+    'description': 'End year vat statement',
     'depends': [
         'account_vat_period_end_statement',
         'l10n_it_account',
+        'l10n_it_account_ext',
     ],
     'data': [
         'reports.xml',
