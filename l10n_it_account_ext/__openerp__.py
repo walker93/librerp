@@ -27,6 +27,7 @@
     'description': 'Italia account extension',
     'depends': [
         'account',
+        'l10n_it_account',
     ],
     'data': [
         'views/account.xml',

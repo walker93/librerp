@@ -2,7 +2,7 @@
 <openerp>
     <data>
 
-      <template id="l10n_it_account_ext.internal_layout">
+      <template id="l10n_it_account.internal_layout">
           <!-- Multicompany -->
           <t t-if="o and 'company_id' in o">
               <t t-set="company" t-value="o.company_id"></t>
@@ -13,7 +13,7 @@
 
           <div class="header">
               <div class="row">
-                  <div class="col-xs-6 company-info">
+                  <div class="col-xs-7 company-info">
                       <h3 class="name"><span t-esc="company.name" /></h3>
                       <span class="address">
                         <span class="street" t-esc="company.street" /> -
@@ -28,7 +28,7 @@
                         <span>Fiscalcode:</span> <span t-esc="company.partner_id.fiscalcode" />
                       </span>
                   </div>
-                  <div class="col-xs-6 text-right doc-info">
+                  <div class="col-xs-5 text-right doc-info">
                       <h3 class="doc-title" t-esc="title"/>
                   </div>
               </div>
