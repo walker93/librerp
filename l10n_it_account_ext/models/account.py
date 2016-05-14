@@ -25,7 +25,7 @@ class AccountInvoice(models.Model):
             self.journal_id = self.fiscal_position.purchase_journal_id or False
 
 
-class account_journal(models.Model):
+class AccountJournal(models.Model):
     _inherit = "account.journal"
 
     _defaults = {
