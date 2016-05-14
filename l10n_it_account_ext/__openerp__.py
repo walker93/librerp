@@ -28,10 +28,12 @@
     'depends': [
         'account',
         'l10n_it_account',
+        'account_cancel',
     ],
     'data': [
         'views/account.xml',
         'views/account_report.xml',
     ],
-    'installable': True
+    'installable': True,
+    'post_init_hook': 'post_init_hook',
 }

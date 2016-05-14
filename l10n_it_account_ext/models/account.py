@@ -23,3 +23,11 @@ class AccountInvoice(models.Model):
             self.journal_id = self.fiscal_position.sale_journal_id or False
         elif self.type in ['in_invoice']:
             self.journal_id = self.fiscal_position.purchase_journal_id or False
+
+
+class account_journal(models.Model):
+    _inherit = "account.journal"
+
+    _defaults = {
+        'update_posted': True,
+    }
