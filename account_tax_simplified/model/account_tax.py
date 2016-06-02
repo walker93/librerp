@@ -204,17 +204,16 @@ class account_tax(models.Model):
                 return {'value': {'base_sign': 1, 'tax_sign': 1,
                                   'ref_base_sign': 1, 'ref_tax_sign': 1}}
 
+    @api.onchange('account_tax_code_id')
+    def onchange_account_tax_code_id(self):
+        if self.account_tax_code_id.vat_statement_account_id:
+            self.account_collected_id = self.account_paid_id = \
+                    self.account_tax_code_id.vat_statement_account_id
+
     account_tax_code_id = fields.Many2one(
         'account.tax.code', string='Tax Code Parent',
         required=False, help='Parent tax code')
     account_base_tax_code_id = fields.Many2one(
         'account.tax.code', string='Base Tax Code Parent',
         required=False, help='Parent base tax code')
-    account_collected_id = fields.Many2one(
-        'account.account', string='Invoice Tax Account',
-        related='account_tax_code_id.vat_statement_account_id',
-        copy=False, readonly=True)
-    account_paid_id = fields.Many2one(
-        'account.account', string='Refund Tax Account',
-        related='account_tax_code_id.vat_statement_account_id',
-        copy=False, readonly=True)
+
