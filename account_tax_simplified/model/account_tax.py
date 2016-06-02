@@ -77,7 +77,8 @@ class account_tax(models.Model):
                         base_tax_code_vals['name'] += str(i)
                     break
             base_code = tax_code_obj.create(base_tax_code_vals)
-            vals.update({'base_code_id': base_code.id})
+            vals.update({'base_code_id': base_code.id,
+                         'ref_base_code_id': base_code.id})
 
         if not vals.get('tax_code_id', False) and vals.get(
                 'account_tax_code_id', False):
@@ -105,7 +106,8 @@ class account_tax(models.Model):
                         tax_code_vals['name'] += str(i)
                     break
             tax_code = tax_code_obj.create(tax_code_vals)
-            vals.update({'tax_code_id': tax_code.id})
+            vals.update({'tax_code_id': tax_code.id,
+                         'ref_tax_code_id': tax_code.id})
 
         return super(account_tax, self).create(vals)
 
@@ -158,7 +160,8 @@ class account_tax(models.Model):
                                 'type_tax_use')) == 'purchase' and -1,
                 }
                 base_code = tax_code_obj.create(base_tax_code_vals)
-                vals.update({'base_code_id': base_code.id})
+                vals.update({'base_code_id': base_code.id,
+                             'ref_base_code_id': base_code.id})
 
         if not tax.tax_code_id:
             if not vals.get('account_tax_code_id', False) and \
@@ -187,7 +190,8 @@ class account_tax(models.Model):
                                     'type_tax_use')) == 'purchase' and -1,
                 }
                 tax_code = tax_code_obj.create(tax_code_vals)
-                vals.update({'tax_code_id': tax_code.id})
+                vals.update({'tax_code_id': tax_code.id,
+                             'ref_tax_code_id': tax_code.id})
 
         return super(account_tax, self).write(vals)
 
@@ -216,4 +220,4 @@ class account_tax(models.Model):
     account_base_tax_code_id = fields.Many2one(
         'account.tax.code', string='Base Tax Code Parent',
         required=False, help='Parent base tax code')
-
+    advanced_view = fields.Boolean('Advanced view')

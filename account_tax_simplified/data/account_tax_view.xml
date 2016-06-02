@@ -8,12 +8,26 @@
             <field name="inherit_id" ref="account.view_tax_form"/>
             <field name="arch" type="xml">
                 <data>
+                    <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Tax Computation']/field[@name='price_include']" position="after">
+                        <field name="advanced_view"/>
+                    </xpath>
+                    <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Invoices']" position="attributes">
+                        <attribute name="attrs">{'invisible': [('advanced_view','&lt;&gt;',True)]}</attribute>
+                    </xpath>
+                    <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Refunds']" position="attributes">
+                        <attribute name="attrs">{'invisible': [('advanced_view','&lt;&gt;',True)]}</attribute>
+                    </xpath>
+                    <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Children/Sub Taxes']" position="attributes">
+                        <attribute name="attrs">{'invisible': [('advanced_view','&lt;&gt;',True), ('child_depend','&lt;&gt;',True)]}</attribute>
+                    </xpath>
                     <xpath expr="/form/group/group/field[@name='type_tax_use']" position="replace">
                         <field name="type_tax_use" on_change="onchange_tax_sign(type_tax_use)"/>
                     </xpath>
                     <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Tax Computation']/div/field[@name='amount']" position="after">
-                        <field name="account_tax_code_id" placeholder="Parent Tax Code..." domain="[('is_base','=',False),('parent_id.parent_id','=',False),]"/>
-                        <field name="account_base_tax_code_id" placeholder="Parent Base Tax Code..." domain="[('is_base','=',True),('parent_id.parent_id','=',False),]"/>
+                        <field name="account_tax_code_id" placeholder="Parent Tax Code..." domain="[('is_base','=',False),('parent_id.parent_id','=',False),]"
+                            attrs="{'invisible': [('tax_code_id','&lt;&gt;',False)]}"/>
+                        <field name="account_base_tax_code_id" placeholder="Parent Base Tax Code..." domain="[('is_base','=',True),('parent_id.parent_id','=',False),]"
+                            attrs="{'invisible': [('base_code_id','&lt;&gt;',False)]}"/>
                     </xpath>
                     <xpath expr="/form/notebook/page[@string='Tax Definition']/group/group[@string='Invoices']/field[@name='base_sign']" position="attributes">
                         <attribute name="readonly">True</attribute>
