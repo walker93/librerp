@@ -211,7 +211,7 @@ class account_tax(models.Model):
     def onchange_account_tax_code_id(self):
         if self.account_tax_code_id.vat_statement_account_id:
             self.account_collected_id = self.account_paid_id = \
-                    self.account_tax_code_id.vat_statement_account_id
+                self.account_tax_code_id.vat_statement_account_id
 
     account_tax_code_id = fields.Many2one(
         'account.tax.code', string='Tax Code Parent',
