@@ -33,7 +33,6 @@ class account_tax(models.Model):
 
     @api.model
     def create(self, vals):
-
         tax_code_obj = self.env['account.tax.code']
         if self.search([('name', '=', vals['name'])]):
             raise Warning(_("Tax name must be unique."))
