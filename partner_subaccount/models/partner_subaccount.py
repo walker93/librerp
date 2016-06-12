@@ -115,19 +115,18 @@ class ResPartner(models.Model):
     @api.model
     def create(self, vals):
         company = self.env.user.company_id
-        if not company.enable_partner_subaccount or vals.get(
-                'parent_id', False):
+        if not company.enable_partner_subaccount or \
+                vals.get('parent_id', False):
             return super(ResPartner, self).create(vals)
 
         # 1 se marcato come cliente - inserire se non esiste
-        if (vals.get('customer', False) or
-            self._context.get('search_default_customer', False) or
-            self._context.get('default_customer', False)) and not (
-                vals.get('supplier', False) or
-                self._context.get('search_default_supplier', False) or
-                self._context.get('default_supplier', False)):
+        if (vals.get('customer', False) or (
+                len(vals) == 2 and self._defaults.get('customer', False)
+                )) and not (
+                vals.get('supplier', False) or (
+                    len(vals) == 2 and self._defaults.get('supplier', False)
+                )):
             vals['block_ref_customer'] = True
-            vals['is_company'] = True
             if not vals.get('property_customer_ref', False):
                 vals['property_customer_ref'] = self.pool['ir.sequence'].get(
                     self._cr, self._uid, 'SEQ_CUSTOMER_REF') or ''
@@ -138,15 +137,13 @@ class ResPartner(models.Model):
                 self.get_create_customer_partner_account(vals)
 
         # 2 se marcato come fornitore - inserire se non esiste
-        if not (
-            vals.get('customer', False) or
-            self._context.get('search_default_customer', False) or
-            self._context.get('default_customer', False)) and (
-                vals.get('supplier', False) or
-                self._context.get('search_default_supplier', False) or
-                self._context.get('default_supplier', False)):
+        if not (vals.get('customer', False) or (
+                len(vals) == 2 and self._defaults.get('customer', False)
+                )) and (
+                vals.get('supplier', False) or (
+                    len(vals) == 2 and self._defaults.get('supplier', False)
+                )):
             vals['block_ref_supplier'] = True
-            vals['is_company'] = True
             if not vals.get('property_supplier_ref', False):
                 vals['property_supplier_ref'] = self.pool['ir.sequence'].get(
                     self._cr, self._uid, 'SEQ_SUPPLIER_REF') or ''
@@ -157,14 +154,13 @@ class ResPartner(models.Model):
                 self.get_create_supplier_partner_account(vals)
 
         # 3 se marcato come cliente e fornitore - inserire se non esiste
-        if (vals.get('customer', False) or
-            self._context.get('search_default_customer', False) or
-            self._context.get('default_customer', False)) and (
-                vals.get('supplier', False) or
-                self._context.get('search_default_supplier', False) or
-                self._context.get('default_supplier', False)):
+        if (vals.get('customer', False) or (
+                len(vals) == 2 and self._defaults.get('customer', False)
+                )) and (
+                vals.get('supplier', False) or (
+                    len(vals) == 2 and self._defaults.get('supplier', False)
+                )):
             vals['block_ref_customer'] = True
-            vals['is_company'] = True
             if not vals.get('property_customer_ref', False):
                 vals['property_customer_ref'] = self.pool['ir.sequence'].get(
                     self._cr, self._uid, 'SEQ_CUSTOMER_REF') or ''
@@ -219,7 +215,7 @@ class ResPartner(models.Model):
             return super(ResPartner, self).write(vals)
         company = self.env.user.company_id
         for partner in self:
-            if not company.enable_partner_subaccount or not partner.is_company:
+            if not company.enable_partner_subaccount:
                 continue
             if partner.block_ref_customer or vals.get('customer', False):
                 vals['block_ref_customer'] = True
